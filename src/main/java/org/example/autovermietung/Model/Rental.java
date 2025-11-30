@@ -1,6 +1,7 @@
-package org.example.autovermietung;
+package org.example.autovermietung.Model;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
 @Entity
@@ -14,17 +15,17 @@ public class Rental {
     private Customer customer;
 
     @ManyToOne
-    private Car car;
+    private AddCar addCar;
 
     private LocalDate startDatum;
     private LocalDate endDatum;
 
     public Rental() {}
 
-    public Rental(Customer customer, Car car,
+    public Rental(Customer customer, AddCar addCar,
                   LocalDate startDatum, LocalDate endDatum) {
         this.customer = customer;
-        this.car = car;
+        this.addCar = addCar;
         this.startDatum = startDatum;
         this.endDatum = endDatum;
     }

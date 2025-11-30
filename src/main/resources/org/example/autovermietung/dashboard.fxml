@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.autovermietung.Controller.DashboardController"
+            style="-fx-background-color: #0d0d0d; -fx-background-radius: 30;">
+
+    <HBox spacing="40" alignment="center">
+
+        <VBox style="-fx-background-color: #111; -fx-background-radius: 20; -fx-padding: 10;"
+              prefWidth="380" prefHeight="240" spacing="10">
+
+            <ImageView fitWidth="380"
+                       style="-fx-background-radius: 20;"
+                       image="@Autos.png">
+                <fitHeight>160</fitHeight>
+            </ImageView>
+
+            <Label text="Meine Autos" style="-fx-text-fill: white; -fx-font-size: 18;"/>
+            <Label text="Verwalte deine Fahrzeuge." style="-fx-text-fill: #cccccc;"/>
+
+            <Button text="Zur Garage"
+                    fx:id="btnOpenGarage"
+                    onAction="#handleOpenGarage"
+                    style="-fx-background-color: #E04B24; -fx-text-fill: white; -fx-background-radius: 8;"/>
+        </VBox>
+
+    </HBox>
+
+</AnchorPane>

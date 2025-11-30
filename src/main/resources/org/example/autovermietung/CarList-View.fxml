@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.autovermietung.Controller.CarListController"
+            prefHeight="600" prefWidth="800"
+            style="-fx-background-color: #0d0d0d; -fx-padding: 20;">
+
+    <VBox spacing="20">
+
+        <Label text="Meine Garage"
+               style="-fx-text-fill: white; -fx-font-size: 24;" />
+
+        <TableView fx:id="carTable"
+                   prefHeight="400"
+                   style="-fx-background-color: #111;">
+
+            <columns>
+                <TableColumn fx:id="colBrand" text="Marke" prefWidth="150"/>
+                <TableColumn fx:id="colModel" text="Modell" prefWidth="150"/>
+                <TableColumn fx:id="colYear" text="Baujahr" prefWidth="100"/>
+                <TableColumn fx:id="colColor" text="Farbe" prefWidth="120"/>
+                <TableColumn fx:id="colPrice" text="Preis/Tag" prefWidth="120"/>
+            </columns>
+
+        </TableView>
+
+        <HBox spacing="20">
+
+            <Button text="Auto hinzufügen"
+                    fx:id="btnAddCar"
+                    onAction="#handleAddCar"
+                    style="-fx-background-color: #E04B24; -fx-text-fill: white;"/>
+
+            <Button text="Auto löschen"
+                    fx:id="btnDeleteCar"
+                    onAction="#handleDeleteCar"
+                    style="-fx-background-color: darkred; -fx-text-fill: white;"/>
+
+            <Button text="Zurück zum Dashboard"
+                    onAction="#handleBack"
+                    style="-fx-text-fill: white; -fx-background-color: #333;"/>
+
+        </HBox>
+
+    </VBox>
+
+</AnchorPane>

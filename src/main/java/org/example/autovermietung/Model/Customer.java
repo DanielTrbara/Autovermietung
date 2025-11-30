@@ -1,4 +1,4 @@
-package org.example.autovermietung;
+package org.example.autovermietung.Model;
 
 import jakarta.persistence.*;
 

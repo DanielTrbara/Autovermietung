@@ -16,4 +16,10 @@ module org.example.autovermietung {
     opens org.example.autovermietung to javafx.fxml, org.hibernate.orm.core;
 
     exports org.example.autovermietung;
+    exports org.example.autovermietung.Controller;
+    opens org.example.autovermietung.Controller to javafx.fxml, org.hibernate.orm.core;
+    exports org.example.autovermietung.Model;
+    opens org.example.autovermietung.Model to javafx.fxml, org.hibernate.orm.core;
+    exports org.example.autovermietung.Repository;
+    opens org.example.autovermietung.Repository to javafx.fxml, org.hibernate.orm.core;
 }
