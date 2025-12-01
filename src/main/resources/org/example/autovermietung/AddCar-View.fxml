@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.autovermietung.Controller.AddCarController"
+            prefHeight="500" prefWidth="600"
+            style="-fx-background-color: #0d0d0d; -fx-padding: 20;">
+
+    <VBox spacing="20">
+
+        <Label text="Auto hinzufügen"
+               style="-fx-text-fill: white; -fx-font-size: 24;" />
+
+        <GridPane hgap="20" vgap="15">
+            <columnConstraints>
+                <ColumnConstraints halignment="LEFT" prefWidth="150"/>
+                <ColumnConstraints halignment="LEFT"/>
+            </columnConstraints>
+
+            <Label text="Marke:" style="-fx-text-fill: white;" GridPane.rowIndex="0"/>
+            <TextField fx:id="txtBrand" promptText="z.B. BMW" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <Label text="Modell:" style="-fx-text-fill: white;" GridPane.rowIndex="1"/>
+            <TextField fx:id="txtModel" promptText="z.B. 320i" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <Label text="Baujahr:" style="-fx-text-fill: white;" GridPane.rowIndex="2"/>
+            <TextField fx:id="txtYear" promptText="z.B. 2018" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <Label text="Farbe:" style="-fx-text-fill: white;" GridPane.rowIndex="3"/>
+            <TextField fx:id="txtColor" promptText="z.B. Schwarz" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+            <Label text="Preis/Tag (€):" style="-fx-text-fill: white;" GridPane.rowIndex="4"/>
+            <TextField fx:id="txtPrice" promptText="z.B. 49.99" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+        </GridPane>
+
+        <HBox spacing="20">
+            <Button text="Speichern"
+                    onAction="#handleSaveCar"
+                    style="-fx-background-color: #E04B24; -fx-text-fill: white; -fx-padding: 8 20;"/>
+
+            <Button text="Zurück"
+                    onAction="#handleBack"
+                    style="-fx-background-color: #333; -fx-text-fill: white; -fx-padding: 8 20;"/>
+        </HBox>
+
+    </VBox>
+
+</AnchorPane>

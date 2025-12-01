@@ -2,7 +2,6 @@ package org.example.autovermietung.Controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -32,47 +31,57 @@ public class CarListController {
     @FXML
     private TableColumn<AddCar, Double> colPrice;
 
-    private final ObservableList<AddCar> cars = FXCollections.observableArrayList();
+    private ObservableList<AddCar> cars;
+
     private final CarRepository carRepository = new CarRepository();
 
     @FXML
     public void initialize() {
-        // Spalten mit AddCar-Properties verbinden (Getter-Namen!)
+
         colBrand.setCellValueFactory(new PropertyValueFactory<>("brand"));
         colModel.setCellValueFactory(new PropertyValueFactory<>("model"));
         colYear.setCellValueFactory(new PropertyValueFactory<>("year"));
         colColor.setCellValueFactory(new PropertyValueFactory<>("color"));
         colPrice.setCellValueFactory(new PropertyValueFactory<>("pricePerDay"));
 
-        // Daten aus DB holen
-        cars.setAll(carRepository.findAll());
+        cars = FXCollections.observableArrayList(carRepository.findAll());
         carTable.setItems(cars);
     }
 
     @FXML
-    private void handleAddCar() {
-        System.out.println("AddCar: Noch nicht implementiert");
+    private void handleAddCar(javafx.event.ActionEvent event) {
+        try {
+            FXMLLoader loader =
+                    new FXMLLoader(getClass().getResource("/org/example/autovermietung/AddCar-View.fxml"));
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(loader.load()));
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void handleDeleteCar() {
         AddCar selected = carTable.getSelectionModel().getSelectedItem();
         if (selected != null) {
-            carRepository.delete(selected);   // Methode im Repo muss so existieren
+            carRepository.delete(selected);
             cars.remove(selected);
         }
     }
 
     @FXML
-    private void handleBack(ActionEvent event) {
+    private void handleBack(javafx.event.ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/org/example/autovermietung/dashboard.fxml")
-            );
+            FXMLLoader loader =
+                    new FXMLLoader(getClass().getResource("/org/example/autovermietung/Dashboard.fxml"));
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(new Scene(loader.load()));
             stage.show();
+
         } catch (IOException e) {
             e.printStackTrace();
         }

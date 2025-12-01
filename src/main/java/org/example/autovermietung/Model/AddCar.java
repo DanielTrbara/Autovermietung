@@ -26,7 +26,6 @@ public class AddCar {
         this.color = color;
     }
 
-    // *** WICHTIG: public Getter für TableView ***
     public int getId() {
         return id;
     }
@@ -36,11 +35,16 @@ public class AddCar {
     public String getModel() {
         return model;
     }
-    public double getPricePerDay() {return pricePerDay;}
-    public int getYear() {return year;}
-    public String getColor() {return color;}
+    public double getPricePerDay() {
+        return pricePerDay;
+    }
+    public int getYear() {
+        return year;
+    }
+    public String getColor() {
+        return color;
+    }
 
-    // Setter (für ORM / Formulare)
     public void setBrand(String brand) {
         this.brand = brand;
     }
@@ -50,8 +54,10 @@ public class AddCar {
     public void setPricePerDay(double pricePerDay) {
         this.pricePerDay = pricePerDay;
     }
-    public void setYear(int year) { this.year = year; }
-    public void setColor(String color) { this.color = color; }
-
-
+    public void setYear(int year) {
+        this.year = year;
+    }
+    public void setColor(String color) {
+        this.color = color;
+    }
 }

@@ -20,9 +20,7 @@
             <ImageView fitWidth="380"
                        style="-fx-background-radius: 20;">
                 <fitHeight>160</fitHeight>
-                <image>
                     <Image url="@assets/Autos.png" />
-                </image>
             </ImageView>
 
             <Label text="Meine Autos" style="-fx-text-fill: white; -fx-font-size: 18;"/>
