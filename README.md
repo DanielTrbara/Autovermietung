@@ -17,7 +17,7 @@ Abdullah / Daniel
 
 Chris
 
-- [ ] Aufgabe 1
+- [ ] Aufgabe 1 (Dashboard stylen mit Figma)
 - [ ] Aufgabe 2
 - [ ] Aufgabe 3
 - [ ] Aufgabe 4
