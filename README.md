@@ -28,7 +28,7 @@ Lionel
 
 Mirac
 
-- [ ] Aufgabe 1
-- [ ] Aufgabe 2
-- [ ] Aufgabe 3
-- [ ] Aufgabe 4
+- [ ] Kunden Datenbank richtig aufstellen
+- [ ] Kunden Seite erstellen 
+- [ ] Facade Pattern bei Kunden einfügen
+- [ ] Seite Designen (scenebuilder sofern möglich)
