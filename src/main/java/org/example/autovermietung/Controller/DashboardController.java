@@ -11,6 +11,7 @@ import java.io.IOException;
 
 public class DashboardController {
 
+
     @FXML
     private Button btnOpenGarage;
 
@@ -33,4 +34,9 @@ public class DashboardController {
             e.printStackTrace();
         }
     }
+
+    public void setUsername(String event) {
+    }
+
+
 }

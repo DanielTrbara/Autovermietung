@@ -3,37 +3,139 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.autovermietung.Controller.DashboardController"
-            style="-fx-background-color: #0d0d0d;">
+<AnchorPane prefHeight="1020.0" prefWidth="1440.0" style="-fx-background-color: linear-gradient(to bottom, #000000 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.7) 100%);" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 
-    <HBox spacing="40" alignment="center">
+    <!-- Header -->
+    <HBox alignment="CENTER_LEFT" layoutX="50.0" layoutY="42.0" spacing="15.0">
+        <!-- Logo -->
+        <Pane prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: white;">
+            <!-- Placeholder für Logo -->
+        </Pane>
 
-        <VBox style="-fx-background-color: #111; -fx-padding: 10;"
-              prefWidth="380" prefHeight="240" spacing="10">
-
-            <ImageView fitWidth="380"
-                       style="-fx-background-radius: 20;">
-                <fitHeight>160</fitHeight>
-                <image>
-                    <Image url="@assets/Autos.png" />
-                </image>
-            </ImageView>
-
-            <Label text="Meine Autos" style="-fx-text-fill: white; -fx-font-size: 18;"/>
-            <Label text="Verwalte deine Fahrzeuge." style="-fx-text-fill: #cccccc;"/>
-
-            <Button text="Zur Garage"
-                    fx:id="btnOpenGarage"
-                    onAction="#handleOpenGarage"
-                    style="-fx-background-color: #E04B24; -fx-text-fill: white; -fx-background-radius: 8;"/>
-        </VBox>
-
+        <!-- Sevenst Text -->
+        <Label text="Sevenst" textFill="white">
+            <font>
+                <Font name="Pretendard" size="24.0" />
+            </font>
+        </Label>
     </HBox>
+
+    <!-- Angemeldet als [Username] -->
+    <Label layoutX="1061.0" layoutY="47.0" text="Angemeldet als [Username]" textFill="white">
+        <font>
+            <Font name="Pretendard" size="14.0" />
+        </font>
+    </Label>
+
+    <!-- Finanzen Card -->
+    <VBox layoutX="141.0" layoutY="151.0" prefHeight="417.0" prefWidth="298.0" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+        <padding>
+            <javafx.geometry.Insets top="20.0" right="20.0" bottom="20.0" left="20.0" />
+        </padding>
+
+        <!-- Card Image Placeholder -->
+        <Pane prefHeight="200.0" prefWidth="258.0" style="-fx-background-color: white; -fx-background-radius: 5;">
+            <!-- Hintergrundbild Placeholder -->
+        </Pane>
+
+        <!-- Finanzen Title -->
+        <Label text="Finanzen" textFill="#000000">
+            <font>
+                <Font name="Pretendard SemiBold" size="24.0" />
+            </font>
+        </Label>
+
+        <!-- Description -->
+        <Label text="Behalte alle Ausgaben, Einnahmen und laufenden Kosten im Überblick." textFill="#000000" wrapText="true">
+            <font>
+                <Font name="Pretendard" size="14.0" />
+            </font>
+        </Label>
+
+        <Region VBox.vgrow="ALWAYS" />
+
+        <!-- Button -->
+        <Button text="Details anzeigen" style="-fx-background-color: #EB512B; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;" prefHeight="40.0" prefWidth="258.0">
+            <font>
+                <Font name="Pretendard Medium" size="14.0" />
+            </font>
+        </Button>
+    </VBox>
+
+    <!-- Meine Autos Card -->
+    <VBox layoutX="463.0" layoutY="156.0" prefHeight="411.0" prefWidth="735.0" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+        <padding>
+            <javafx.geometry.Insets top="20.0" right="20.0" bottom="20.0" left="20.0" />
+        </padding>
+
+        <!-- Card Image Placeholder -->
+        <Pane prefHeight="230.0" prefWidth="695.0" style="-fx-background-color: white; -fx-background-radius: 5;">
+            <!-- Hintergrundbild Placeholder -->
+        </Pane>
+
+        <!-- Meine Autos Title -->
+        <Label text="Meine Autos" textFill="#000000">
+            <font>
+                <Font name="Pretendard SemiBold" size="24.0" />
+            </font>
+        </Label>
+
+        <!-- Description -->
+        <Label text="Verwalte deine Fahrzeuge, prüfe Informationen und füge neue Autos hinzu." textFill="#000000" wrapText="true">
+            <font>
+                <Font name="Pretendard" size="14.0" />
+            </font>
+        </Label>
+
+        <Region VBox.vgrow="ALWAYS" />
+
+        <!-- Button -->
+        <Button text="Zur Garage" style="-fx-background-color: #EB512B; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;" prefHeight="40.0" prefWidth="200.0">
+            <font>
+                <Font name="Pretendard Medium" size="14.0" />
+            </font>
+        </Button>
+    </VBox>
+
+    <!-- Wartung Card -->
+    <VBox layoutX="141.0" layoutY="594.0" prefHeight="320.0" prefWidth="298.0" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+        <padding>
+            <javafx.geometry.Insets top="20.0" right="20.0" bottom="20.0" left="20.0" />
+        </padding>
+
+        <!-- Card Image Placeholder -->
+        <Pane prefHeight="130.0" prefWidth="258.0" style="-fx-background-color: white; -fx-background-radius: 5;">
+            <!-- Hintergrundbild Placeholder -->
+        </Pane>
+
+        <!-- Wartung Title -->
+        <Label text="Wartung" textFill="#000000">
+            <font>
+                <Font name="Pretendard SemiBold" size="24.0" />
+            </font>
+        </Label>
+
+        <!-- Description -->
+        <Label text="Plane Reparaturen, erinnere dich an Service-Intervalle und führe Wartungshistorien." textFill="#000000" wrapText="true">
+            <font>
+                <Font name="Pretendard" size="14.0" />
+            </font>
+        </Label>
+
+        <Region VBox.vgrow="ALWAYS" />
+
+        <!-- Button -->
+        <Button text="Services anzeigen" style="-fx-background-color: #EB512B; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;" prefHeight="40.0" prefWidth="258.0">
+            <font>
+                <Font name="Pretendard Medium" size="14.0" />
+            </font>
+        </Button>
+    </VBox>
 
 </AnchorPane>
