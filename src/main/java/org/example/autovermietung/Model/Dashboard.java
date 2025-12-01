@@ -10,7 +10,7 @@ public class Dashboard extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(
-                Dashboard.class.getResource("dashboard.fxml")
+                Dashboard.class.getResource("/org/example/autovermietung/dashboard.fxml")
         );
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Autovermietung");

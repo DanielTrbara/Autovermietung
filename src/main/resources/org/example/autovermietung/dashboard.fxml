@@ -4,20 +4,25 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.example.autovermietung.Controller.DashboardController"
-            style="-fx-background-color: #0d0d0d; -fx-background-radius: 30;">
+            style="-fx-background-color: #0d0d0d;">
 
     <HBox spacing="40" alignment="center">
 
-        <VBox style="-fx-background-color: #111; -fx-background-radius: 20; -fx-padding: 10;"
+        <VBox style="-fx-background-color: #111; -fx-padding: 10;"
               prefWidth="380" prefHeight="240" spacing="10">
 
             <ImageView fitWidth="380"
-                       style="-fx-background-radius: 20;"
-                       image="@Autos.png">
+                       style="-fx-background-radius: 20;">
                 <fitHeight>160</fitHeight>
+                <image>
+                    <Image url="@assets/Autos.png" />
+                </image>
             </ImageView>
 
             <Label text="Meine Autos" style="-fx-text-fill: white; -fx-font-size: 18;"/>
