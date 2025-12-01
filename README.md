@@ -20,10 +20,10 @@ Abdullah / Daniel
 
 Chris
 
-- [ ] Aufgabe 1 (Dashboard stylen mit Figma)
-- [ ] Aufgabe 2
-- [ ] Aufgabe 3
-- [ ] Aufgabe 4
+- [ ] Finanzen Datenbank
+- [ ] Einnahmen, Ausgaben und Gewinn Statistik
+- [ ] Filter (Bsp. monatliche Daten)
+- [ ] Einnahmen Bereich komplett
 
 Lionel
 
