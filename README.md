@@ -8,15 +8,17 @@ Definition of done
       
 - [ ] Funktionierende Einnahmen/Ausgaben ( man sieht die einnahmen und ausgaben von vergangenen monaten mit statistiken )
 
+- [ ] Rental funktion ( man kann das Auto an einen Kunden vermieten )
+
 
 
 
 Abdullah / Daniel
 
 - [x] Dashboard mit Garage und Autos hizufügen
-- [ ] Aufgabe 2
-- [ ] Aufgabe 3
-- [ ] Aufgabe 4
+- [ ] Erweiterte Ansicht auf Autos ( Tank anzeige, Kilometerstand, Farbe, Vorbesitzer, TÜV, ... )
+- [ ] Filter für die Autos ( nach marke, nach farbe, ... )
+- [ ] Sortier funktion ( nach Preis, Baujahr, ... )
 
 Chris
 
@@ -27,10 +29,10 @@ Chris
 
 Lionel
 
-- [ ] Aufgabe 1
-- [ ] Aufgabe 2
-- [ ] Aufgabe 3
-- [ ] Aufgabe 4
+- [ ] Dashboard mit CSS gestalten
+- [ ] CSS für Car Liste
+- [ ] CSS für Kunden Liste
+- [ ] CSS für Einnahmen Ausgaben
 
 Mirac
 
