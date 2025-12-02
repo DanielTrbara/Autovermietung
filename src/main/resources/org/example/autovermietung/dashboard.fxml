@@ -17,7 +17,7 @@
         <!-- Logo -->
         <ImageView fitHeight="30.0" fitWidth="60.0" preserveRatio="true">
             <image>
-                <Image url="@../../../../../../../../Downloads/assets/Sevenst_logo.png" />
+                <Image url="@assets/Sevenst_logo.png" />
             </image>
         </ImageView>
 
