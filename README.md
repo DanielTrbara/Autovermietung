@@ -1,14 +1,49 @@
 # Definition of done
 
-- [ ] Funktionierendes Dashboard ( man kann auf alle kacheln klicken und wird zu den entsprechend ansichten weitergeleitet )
-      
-- [ ] Funktionierende Car Liste ( es werden alle autos gelistet, man kann autos anlegen/löschen, ansicht ob autos verfügbar sind bzw. vermietet sind, man sollte sehen können ob ein auto eine wartung braucht )
-      
-- [ ] Funktionierende Kunden Liste ( man sieht alle kunden informationen, kunden können angelegt bzw. gelöscht werden, welches auto ist grad an den kunden vermietet )
-      
-- [ ] Funktionierende Einnahmen/Ausgaben ( man sieht die einnahmen und ausgaben von vergangenen monaten mit statistiken )
+### Fachliche Anforderungen erfüllt
 
-- [ ] Rental funktion ( man kann das Auto an einen Kunden vermieten )
+- Alle Akzeptanzkriterien der User Story sind erfüllt.
+
+- Die Funktion verhält sich wie beschrieben.
+
+### Technische Implementierung abgeschlossen
+
+- Die Funktion ist vollständig implementiert und integriert.
+
+- Alle relevanten JavaFX-Views (FXML + Controller) sind funktionsfähig.
+
+- Navigation zu anderen Views funktioniert fehlerfrei.
+
+- Repository speichert/liest korrekt.
+
+### Keine Fehlermeldungen / Exceptions
+
+- In der Konsole dürfen keine Exceptions auftauchen.
+
+- JavaFX lädt alle Scenes ohne Fehler.
+
+### Codequalität eingehalten
+
+- Variablennamen sind verständlich.
+
+- Methoden sind sinnvoll benannt.
+
+- Keine ungenutzten Imports.
+
+### UI/UX entspricht Standard
+
+- Buttons, Textfelder und Tabellen sind beschriftet.
+
+- Responsives Verhalten oder zumindest stabile Layouts.
+
+- Keine abgeschnittenen Texte oder verschobenen Elemente.
+
+- Farben passen zum Dashboard-Thema.
+
+### Datenhaltung ist korrekt
+
+Wenn gespeichert wird:
+Daten erscheinen nach Neustart wieder
 
 #
 
