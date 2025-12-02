@@ -1,4 +1,4 @@
-Definition of done
+# Definition of done
 
 - [ ] Funktionierendes Dashboard ( man kann auf alle kacheln klicken und wird zu den entsprechend ansichten weitergeleitet )
       
@@ -10,33 +10,39 @@ Definition of done
 
 - [ ] Rental funktion ( man kann das Auto an einen Kunden vermieten )
 
+#
 
 
 
-Abdullah / Daniel
+
+#
+
+### Abdullah / Daniel
 
 - [x] Dashboard mit Garage und Autos hizufügen
 - [ ] Erweiterte Ansicht auf Autos ( Tank anzeige, Kilometerstand, Farbe, Vorbesitzer, TÜV, ... )
 - [ ] Filter für die Autos ( nach marke, nach farbe, ... )
 - [ ] Sortier funktion ( nach Preis, Baujahr, ... )
 
-Chris
+### Chris
 
 - [ ] Finanzen Datenbank
 - [ ] Einnahmen, Ausgaben und Gewinn Statistik
 - [ ] Filter (Bsp. monatliche Daten)
 - [ ] Einnahmen Bereich komplett
 
-Lionel
+### Lionel
 
 - [ ] Dashboard mit CSS gestalten
 - [ ] CSS für Car Liste
 - [ ] CSS für Kunden Liste
 - [ ] CSS für Einnahmen Ausgaben
 
-Mirac
+### Mirac
 
 - [ ] Kunden Datenbank richtig aufstellen
 - [ ] Kunden Seite erstellen 
 - [ ] Facade Pattern bei Kunden einfügen
 - [ ] Seite Designen (scenebuilder sofern möglich)
+
+#
