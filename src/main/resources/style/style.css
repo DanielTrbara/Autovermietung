@@ -19,6 +19,9 @@
     src: url('/org/example/autovermietung/fonts/Pretendard-Bold.otf');
 }
 
+
+
+
 .root {
     -fx-font-family: 'Pretendard';
 }

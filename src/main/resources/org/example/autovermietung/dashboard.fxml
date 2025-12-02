@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
-
-<?import javafx.beans.binding.DoubleExpression?>
-<AnchorPane fx:controller="org.example.autovermietung.Controller.DashboardController" prefHeight="1020.0" prefWidth="1440.0" style="-fx-background-color: #050505;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<AnchorPane prefHeight="1020.0" prefWidth="1440.0" style="-fx-background-color: #050505;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.autovermietung.Controller.DashboardController">
 
     <!-- Header -->
     <HBox alignment="CENTER_LEFT" layoutX="50.0" layoutY="42.0" spacing="8.0">
         <!-- Logo -->
         <ImageView fitHeight="30.0" fitWidth="60.0" preserveRatio="true">
             <image>
-                <Image url="@assets/Sevenst_logo.png" />
+                <Image url="@../../../../../../../../Downloads/assets/Sevenst_logo.png" />
             </image>
         </ImageView>
 
@@ -35,109 +35,104 @@
             <Font name="Pretendard-Medium" size="14.0" />
         </font>
     </Label>
-
-    <!-- Finanzen Card -->
-    <VBox layoutX="141.0" layoutY="151.0" prefHeight="417.0" prefWidth="298.0" spacing="15.0" style="-fx-background-color: white;">
-        <padding>
-            <javafx.geometry.Insets top="20.0" right="20.0" bottom="20.0" left="20.0" />
-        </padding>
-
-        <!-- Card Image -->
-
-
-
-        <!-- Finanzen Title -->
-        <Label text="Finanzen" textFill="#000000">
-            <font>
-                <Font name="Pretendard SemiBold" size="24.0" />
-            </font>
-        </Label>
-
-        <!-- Description -->
-        <Label text="Behalte alle Ausgaben, Einnahmen und laufenden Kosten im Überblick." textFill="#000000" wrapText="true">
-            <font>
-                <Font name="Pretendard-Regular" size="14.0" />
-            </font>
-        </Label>
-
-        <Region VBox.vgrow="ALWAYS" />
-
-        <!-- Button -->
-        <Button text="Details anzeigen" style="-fx-background-color: #EB512B; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;" prefHeight="28.0" prefWidth="125.0" textAlignment="LEFT">
-            <font>
-                <Font name="Pretendard SemiBold" size="14.0" />
-            </font>
-        </Button>
-    </VBox>
-
-    <!-- Meine Autos Card -->
-    <VBox layoutX="463.0" layoutY="156.0" prefHeight="411.0" prefWidth="735.0" spacing="15.0" style="-fx-background-color: white;">
-        <padding>
-            <javafx.geometry.Insets top="20.0" right="20.0" bottom="20.0" left="20.0" />
-        </padding>
-
-        <!-- Card Image Placeholder -->
-        <Pane prefHeight="230.0" prefWidth="695.0" style="-fx-background-color: white;">
-            <!-- Hintergrundbild Placeholder -->
-        </Pane>
-
-        <!-- Meine Autos Title -->
-        <Label text="Meine Autos" textFill="#000000">
-            <font>
-                <Font name="Pretendard SemiBold" size="24.0" />
-            </font>
-        </Label>
-
-        <!-- Description -->
-        <Label text="Verwalte deine Fahrzeuge, prüfe Informationen und füge neue Autos hinzu." textFill="#000000" wrapText="true">
-            <font>
-                <Font name="Pretendard" size="14.0" />
-            </font>
-        </Label>
-
-        <Region VBox.vgrow="ALWAYS" />
-
-        <!-- Button -->
-        <Button text="Zur Garage" style="-fx-background-color: #EB512B; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;" prefHeight="40.0" prefWidth="200.0">
-            <font>
-                <Font name="Pretendard Medium" size="14.0" />
-            </font>
-        </Button>
-    </VBox>
-
-    <!-- Wartung Card -->
-    <VBox layoutX="141.0" layoutY="594.0" prefHeight="320.0" prefWidth="298.0" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 10;">
-        <padding>
-            <javafx.geometry.Insets top="20.0" right="20.0" bottom="20.0" left="20.0" />
-        </padding>
-
-        <!-- Card Image Placeholder -->
-        <Pane prefHeight="130.0" prefWidth="258.0" style="-fx-background-color: white; -fx-background-radius: 5;">
-            <!-- Hintergrundbild Placeholder -->
-        </Pane>
-
-        <!-- Wartung Title -->
-        <Label text="Wartung" textFill="#000000">
-            <font>
-                <Font name="Pretendard SemiBold" size="24.0" />
-            </font>
-        </Label>
-
-        <!-- Description -->
-        <Label text="Plane Reparaturen, erinnere dich an Service-Intervalle und führe Wartungshistorien." textFill="#000000" wrapText="true">
-            <font>
-                <Font name="Pretendard" size="14.0" />
-            </font>
-        </Label>
-
-        <Region VBox.vgrow="ALWAYS" />
-
-        <!-- Button -->
-        <Button text="Services anzeigen" style="-fx-background-color: #EB512B; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;" prefHeight="40.0" prefWidth="258.0">
-            <font>
-                <Font name="Pretendard Medium" size="14.0" />
-            </font>
-        </Button>
-    </VBox>
+   <StackPane layoutX="141.0" layoutY="156.0" prefHeight="411.0" prefWidth="298.0">
+      <children>
+         <ImageView fitHeight="409.0" fitWidth="297.0" pickOnBounds="true" smooth="false">
+            <image>
+               <Image url="@assets/marissa-grootes-ck0i9Dnjtj0-unsplash.jpg" />
+            </image>
+         </ImageView>
+         <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to bottom,rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.44) 50%, rgba(0, 0, 0, 1) 70%);">
+            <children>
+                    <!-- Finanzen Title -->
+                 <Label layoutX="14.0" layoutY="277.0" text="Finanzen" textFill="WHITE">
+                     <font>
+                         <Font name="Pretendard SemiBold" size="24.0" />
+                     </font>
+                 </Label>
+         
+                             <!-- Description -->
+                 <Label layoutX="14.0" layoutY="312.0" prefHeight="43.0" prefWidth="250.0" text="Behalte alle Ausgaben, Einnahmen und laufenden Kosten im Überblick." textFill="WHITE" wrapText="true">
+                     <font>
+                         <Font size="11.0" />
+                     </font>
+                 </Label>
+         
+                             <!-- Button -->
+                 <Button layoutX="14.0" layoutY="355.0" prefHeight="28.0" prefWidth="145.0" style="-fx-background-color: #EB512B; -fx-text-fill: white; -fx-cursor: hand;" text="Details anzeigen" textAlignment="LEFT" textFill="WHITE">
+                     <font>
+                         <Font name="Pretendard SemiBold" size="14.0" />
+                     </font>
+                 </Button>
+            </children>
+         </Pane>
+      </children>
+   </StackPane>
+   <StackPane layoutX="463.0" layoutY="156.0" prefHeight="411.0" prefWidth="720.0">
+      <children>
+         <ImageView fitHeight="410.0" fitWidth="722.0" pickOnBounds="true" smooth="false">
+            <image>
+               <Image url="@assets/obi-aZKJEvydrNM-unsplash.jpg" />
+            </image>
+         </ImageView>
+         <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to bottom,rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.44) 50%, rgba(0, 0, 0, 1) 70%);">
+            <children>
+         
+                 <!-- Meine Autos Title -->
+                 <Label layoutX="26.0" layoutY="274.0" text="Meine Autos" textFill="WHITE">
+                     <font>
+                         <Font name="Pretendard SemiBold" size="24.0" />
+                     </font>
+                 </Label>
+         
+                 <!-- Description -->
+                 <Label layoutX="26.0" layoutY="317.0" text="Verwalte deine Fahrzeuge, prüfe Informationen und füge neue Autos hinzu." textFill="WHITE" wrapText="true">
+                     <font>
+                         <Font size="11.0" />
+                     </font>
+                 </Label>
+               <Button layoutX="26.0" layoutY="355.0" prefHeight="28.0" prefWidth="125.0" style="-fx-background-color: #EB512B; -fx-text-fill: white; -fx-cursor: hand;" text="Zur Garage" textAlignment="LEFT" textFill="WHITE">
+                  <font>
+                     <Font name="Pretendard SemiBold" size="14.0" />
+                  </font>
+               </Button>
+            </children>
+         </Pane>
+      </children>
+   </StackPane>
+   <StackPane layoutX="141.0" layoutY="626.0" prefHeight="337.0" prefWidth="298.0">
+      <children>
+         <ImageView fitHeight="337.0" fitWidth="300.0" pickOnBounds="true" smooth="false">
+            <image>
+               <Image url="@assets/isabela-kronemberger-OegFhZfw6Ok-unsplash.jpg" />
+            </image>
+         </ImageView>
+         <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: linear-gradient(to bottom,rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.44) 40%, rgba(0, 0, 0, 1) 60%);">
+            <children>
+            
+                 <!-- Button -->
+                 <Button layoutX="14.0" layoutY="293.0" prefHeight="30.0" prefWidth="150.0" style="-fx-background-color: #EB512B; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;" text="Services anzeigen">
+                     <font>
+                         <Font name="Pretendard Medium" size="14.0" />
+                     </font>
+                 </Button>
+            
+                 <!-- Wartung Title -->
+                 <Label layoutX="14.0" layoutY="206.0" text="Wartung" textFill="WHITE">
+                     <font>
+                         <Font name="Pretendard SemiBold" size="24.0" />
+                     </font>
+                 </Label>
+            
+                 <!-- Description -->
+                 <Label layoutX="14.0" layoutY="241.0" prefHeight="43.0" prefWidth="274.0" text="Plane Reparaturen, erinnere dich an Service-Intervalle und führe Wartungshistorien." textFill="WHITE" wrapText="true">
+                     <font>
+                         <Font size="11.0" />
+                     </font>
+                 </Label>
+            </children>
+         </Pane>
+      </children>
+   </StackPane>
 
 </AnchorPane>
