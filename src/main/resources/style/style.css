@@ -1,53 +1,41 @@
 @font-face {
     font-family: 'Pretendard';
-    font-weight: 100;
-    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Thin.woff2') format('woff2');
-}
-@font-face {
-    font-family: 'Pretendard';
-    font-weight: 200;
-    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-ExtraLight.woff2') format('woff2');
-}
-@font-face {
-    font-family: 'Pretendard';
-    font-weight: 300;
-    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Light.woff2') format('woff2');
-}
-@font-face {
-    font-family: 'Pretendard';
     font-weight: 400;
-    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Regular.woff2') format('woff2');
+    src: url('/org/example/autovermietung/fonts/Pretendard-Regular.otf');
 }
 @font-face {
     font-family: 'Pretendard';
     font-weight: 500;
-    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Medium.woff2') format('woff2');
+    src: url('/org/example/autovermietung/fonts/Pretendard-Medium.otf');
 }
 @font-face {
     font-family: 'Pretendard';
     font-weight: 600;
-    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-SemiBold.woff2') format('woff2');
+    src: url('/org/example/autovermietung/fonts/Pretendard-SemiBold.otf');
 }
 @font-face {
     font-family: 'Pretendard';
     font-weight: 700;
-    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Bold.woff2') format('woff2');
-}
-@font-face {
-    font-family: 'Pretendard';
-    font-weight: 800;
-    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-ExtraBold.woff2') format('woff2');
-}
-@font-face {
-    font-family: 'Pretendard';
-    font-weight: 900;
-    src: url('https://cdn.jsdelivr.net/gh/fonts-archive/Pretendard/Pretendard-Black.woff2') format('woff2');
+    src: url('/org/example/autovermietung/fonts/Pretendard-Bold.otf');
 }
 
 .root {
     -fx-font-family: 'Pretendard';
 }
 
+/* Button Hover Effect */
+.button:hover {
+    -fx-background-color: derive(#EB512B, -10%);
+}
+
+.button:pressed {
+    -fx-background-color: derive(#EB512B, -20%);
+}
+
+/* Card Shadow Effect */
+.card {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0, 0, 2);
+}
 /* Button Hover Effect */
 .button:hover {
     -fx-background-color: derive(#EB512B, -10%);

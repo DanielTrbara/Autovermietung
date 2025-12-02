@@ -9,19 +9,22 @@
 <?import javafx.scene.image.ImageView?>
 
 
-<AnchorPane prefHeight="1020.0" prefWidth="1440.0" style="-fx-background-color: linear-gradient(to bottom, #000000 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.7) 100%);" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<?import javafx.beans.binding.DoubleExpression?>
+<AnchorPane fx:controller="org.example.autovermietung.Controller.DashboardController" prefHeight="1020.0" prefWidth="1440.0" style="-fx-background-color: #050505;" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
 
     <!-- Header -->
-    <HBox alignment="CENTER_LEFT" layoutX="50.0" layoutY="42.0" spacing="15.0">
+    <HBox alignment="CENTER_LEFT" layoutX="50.0" layoutY="42.0" spacing="8.0">
         <!-- Logo -->
-        <Pane prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: white;">
-            <!-- Placeholder für Logo -->
-        </Pane>
+        <ImageView fitHeight="30.0" fitWidth="60.0" preserveRatio="true">
+            <image>
+                <Image url="@assets/Sevenst_logo.png" />
+            </image>
+        </ImageView>
 
         <!-- Sevenst Text -->
         <Label text="Sevenst" textFill="white">
             <font>
-                <Font name="Pretendard" size="24.0" />
+                <Font name="Pretendard Regular" size="24.0" />
             </font>
         </Label>
     </HBox>
@@ -29,20 +32,19 @@
     <!-- Angemeldet als [Username] -->
     <Label layoutX="1061.0" layoutY="47.0" text="Angemeldet als [Username]" textFill="white">
         <font>
-            <Font name="Pretendard" size="14.0" />
+            <Font name="Pretendard-Medium" size="14.0" />
         </font>
     </Label>
 
     <!-- Finanzen Card -->
-    <VBox layoutX="141.0" layoutY="151.0" prefHeight="417.0" prefWidth="298.0" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+    <VBox layoutX="141.0" layoutY="151.0" prefHeight="417.0" prefWidth="298.0" spacing="15.0" style="-fx-background-color: white;">
         <padding>
             <javafx.geometry.Insets top="20.0" right="20.0" bottom="20.0" left="20.0" />
         </padding>
 
-        <!-- Card Image Placeholder -->
-        <Pane prefHeight="200.0" prefWidth="258.0" style="-fx-background-color: white; -fx-background-radius: 5;">
-            <!-- Hintergrundbild Placeholder -->
-        </Pane>
+        <!-- Card Image -->
+
+
 
         <!-- Finanzen Title -->
         <Label text="Finanzen" textFill="#000000">
@@ -54,28 +56,28 @@
         <!-- Description -->
         <Label text="Behalte alle Ausgaben, Einnahmen und laufenden Kosten im Überblick." textFill="#000000" wrapText="true">
             <font>
-                <Font name="Pretendard" size="14.0" />
+                <Font name="Pretendard-Regular" size="14.0" />
             </font>
         </Label>
 
         <Region VBox.vgrow="ALWAYS" />
 
         <!-- Button -->
-        <Button text="Details anzeigen" style="-fx-background-color: #EB512B; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;" prefHeight="40.0" prefWidth="258.0">
+        <Button text="Details anzeigen" style="-fx-background-color: #EB512B; -fx-text-fill: white; -fx-background-radius: 5; -fx-cursor: hand;" prefHeight="28.0" prefWidth="125.0" textAlignment="LEFT">
             <font>
-                <Font name="Pretendard Medium" size="14.0" />
+                <Font name="Pretendard SemiBold" size="14.0" />
             </font>
         </Button>
     </VBox>
 
     <!-- Meine Autos Card -->
-    <VBox layoutX="463.0" layoutY="156.0" prefHeight="411.0" prefWidth="735.0" spacing="15.0" style="-fx-background-color: white; -fx-background-radius: 10;">
+    <VBox layoutX="463.0" layoutY="156.0" prefHeight="411.0" prefWidth="735.0" spacing="15.0" style="-fx-background-color: white;">
         <padding>
             <javafx.geometry.Insets top="20.0" right="20.0" bottom="20.0" left="20.0" />
         </padding>
 
         <!-- Card Image Placeholder -->
-        <Pane prefHeight="230.0" prefWidth="695.0" style="-fx-background-color: white; -fx-background-radius: 5;">
+        <Pane prefHeight="230.0" prefWidth="695.0" style="-fx-background-color: white;">
             <!-- Hintergrundbild Placeholder -->
         </Pane>
 

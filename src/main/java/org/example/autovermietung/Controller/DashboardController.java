@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import javafx.scene.Node;
 import java.io.IOException;
@@ -14,6 +15,12 @@ public class DashboardController {
 
     @FXML
     private Button btnOpenGarage;
+
+    private Label usenameLabel;
+
+    public Label getUsenameLabel() {
+        return usenameLabel;
+    }
 
     /**
      * Wird ausgeführt, wenn der User auf "Zur Garage" klickt.
@@ -35,8 +42,7 @@ public class DashboardController {
         }
     }
 
-    public void setUsername(String event) {
-    }
+
 
 
 }

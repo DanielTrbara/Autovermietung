@@ -3,19 +3,27 @@ package org.example.autovermietung.Model;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import org.example.autovermietung.Controller.DashboardController;
 // Debugging
 import java.io.File;
-import java.net.URL;
-import java.util.Objects;
 
 public class Dashboard extends Application {
 
+
+
+
     @Override
     public void start(Stage stage) throws Exception {
+
+
         try {
+            Font.loadFont(getClass().getResourceAsStream("/org/example/autovermietung/fonts/Pretendard-Regular.otf"), 14);
+            Font.loadFont(getClass().getResourceAsStream("/org/example/autovermietung/fonts/Pretendard-Medium.otf"), 14);
+            Font.loadFont(getClass().getResourceAsStream("/org/example/autovermietung/fonts/Pretendard-SemiBold.otf"), 14);
+            Font.loadFont(getClass().getResourceAsStream("/org/example/autovermietung/fonts/Pretendard-Bold.otf"), 14);
 
             // Laden der FXML
             FXMLLoader fxmlLoader = new FXMLLoader(
@@ -25,17 +33,19 @@ public class Dashboard extends Application {
 
             // Laden der CSS
             Scene scene = new Scene(root, 1440, 1200);
+            scene.getStylesheets().add(getClass().getResource("/style/style.css").toExternalForm());
 
-            System.out.println("Working dir = " + new File(".").getAbsolutePath());
-            System.out.println("Check target = " + new File("target/classes").exists());
-            System.out.println("Check style.css = " +
-                    new File("target/classes/org/example/autovermietung/style/style.css").exists());
+
+
+//            System.out.println("Working dir = " + new File(".").getAbsolutePath());
+//            System.out.println("Check target = " + new File("target/classes").exists());
+//            System.out.println("Check style.css = " + new File("src/main/resources/style/style.css").exists());
 
 
 
             // Controller und Username setzen
             DashboardController dashboardController = fxmlLoader.getController();
-            dashboardController.setUsername("MaxMustermann");
+
 
             // Stage-Konfig
             stage.setTitle("Autovermietung");
