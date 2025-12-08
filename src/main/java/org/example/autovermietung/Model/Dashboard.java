@@ -2,18 +2,13 @@ package org.example.autovermietung.Model;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.scene.Parent;
 import org.example.autovermietung.Controller.DashboardController;
-// Debugging
-import java.io.File;
 
 public class Dashboard extends Application {
-
-
-
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -36,14 +31,12 @@ public class Dashboard extends Application {
             scene.getStylesheets().add(getClass().getResource("/style/style.css").toExternalForm());
 
 
-
+//            --- DEBUGGING ---
 //            System.out.println("Working dir = " + new File(".").getAbsolutePath());
 //            System.out.println("Check target = " + new File("target/classes").exists());
 //            System.out.println("Check style.css = " + new File("src/main/resources/style/style.css").exists());
 
 
-
-            // Controller und Username setzen
             DashboardController dashboardController = fxmlLoader.getController();
 
 
@@ -57,6 +50,7 @@ public class Dashboard extends Application {
             e.printStackTrace();
         }
     }
+
     public static void main(String[] args) {
         launch();
     }
