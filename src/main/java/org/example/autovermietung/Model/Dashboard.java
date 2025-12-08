@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.example.autovermietung.Controller.DashboardController;
 
 public class Dashboard extends Application {
@@ -27,11 +28,11 @@ public class Dashboard extends Application {
             Parent root = fxmlLoader.load();
 
             // Laden der CSS
-            Scene scene = new Scene(root, 1440, 1200);
+            Scene scene = new Scene(root, 1280, 1000);
             scene.getStylesheets().add(getClass().getResource("/style/style.css").toExternalForm());
 
 
-//            --- DEBUGGING ---
+//            --- DEBUGGING FALLS CSS NICHT ERKANNT WIRD ---
 //            System.out.println("Working dir = " + new File(".").getAbsolutePath());
 //            System.out.println("Check target = " + new File("target/classes").exists());
 //            System.out.println("Check style.css = " + new File("src/main/resources/style/style.css").exists());
@@ -42,9 +43,12 @@ public class Dashboard extends Application {
 
             // Stage-Konfig
             stage.setTitle("Autovermietung");
+            stage.initStyle(StageStyle.UNDECORATED);
+
             stage.setScene(scene);
-            stage.setResizable(false);
+            stage.setResizable(true);
             stage.show();
+
 
         } catch (Exception e) {
             e.printStackTrace();

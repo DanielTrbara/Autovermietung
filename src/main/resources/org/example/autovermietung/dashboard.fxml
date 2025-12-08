@@ -1,152 +1,239 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane prefHeight="1020.0" prefWidth="1440.0" style="-fx-background-color: #050505;"
-            xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+<BorderPane prefHeight="1200.0" prefWidth="1440.0"
+            style="-fx-background-color: #050505;"
+            xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="org.example.autovermietung.Controller.DashboardController">
 
-    <!-- Header -->
-    <HBox alignment="CENTER_LEFT" layoutX="50.0" layoutY="42.0" spacing="8.0">
-        <!-- Logo -->
-        <ImageView fitHeight="30.0" fitWidth="60.0" preserveRatio="true">
-            <image>
-                <Image url="@assets/Sevenst_logo.png"/>
-            </image>
-        </ImageView>
+    <!-- TOP BAR -->
+    <top>
+        <VBox spacing="0" style="-fx-background-color: #050505;">
 
-        <!-- Sevenst Text -->
-        <Label text="Sevenst" textFill="white">
-            <font>
-                <Font name="Pretendard Medium" size="18.0"/>
-            </font>
-        </Label>
-    </HBox>
+            <!-- Window Controls Bar -->
+            <HBox fx:id="titleBar" alignment="CENTER_LEFT"
+                  style="-fx-background-color: #050505; -fx-padding: 8 12 8 12;"
+                  onMousePressed="#handleTitleBarPressed"
+                  onMouseDragged="#handleTitleBarDragged">
 
-    <!-- Angemeldet als [Username] -->
-    <Label layoutX="1061.0" layoutY="47.0" text="Angemeldet als [Username]" textFill="white">
-        <font>
-            <Font name="Pretendard-Medium" size="14.0"/>
-        </font>
-    </Label>
-    <StackPane layoutX="141.0" layoutY="156.0" prefHeight="411.0" prefWidth="298.0">
-        <children>
-            <ImageView fitHeight="409.0" fitWidth="297.0" pickOnBounds="true" smooth="false">
-                <image>
-                    <Image url="@assets/marissa-grootes-ck0i9Dnjtj0-unsplash.jpg"/>
-                </image>
-            </ImageView>
-            <Pane prefHeight="200.0" prefWidth="200.0"
-                  style="-fx-background-color: linear-gradient(to bottom,rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.44) 50%, rgba(0, 0, 0, 1) 70%);">
-                <children>
-                    <!-- Finanzen Title -->
-                    <Label layoutX="14.0" layoutY="277.0" text="Finanzen" textFill="WHITE">
-                        <font>
-                            <Font name="Pretendard SemiBold" size="24.0"/>
-                        </font>
-                    </Label>
+                <!-- Title (optional, can be empty) -->
+                <Label text="Autovermietung" textFill="#666666" style="-fx-font-size: 11px;">
+                    <font>
+                        <Font name="Pretendard Regular" size="11.0"/>
+                    </font>
+                </Label>
 
-                    <!-- Description -->
-                    <Label layoutX="14.0" layoutY="312.0" prefHeight="43.0" prefWidth="250.0"
-                           text="Behalte alle Ausgaben, Einnahmen und laufenden Kosten im Überblick." textFill="WHITE"
-                           wrapText="true">
-                        <font>
-                            <Font size="11.0"/>
-                        </font>
-                    </Label>
+                <!-- Spacer -->
+                <Region HBox.hgrow="ALWAYS"/>
 
-                    <!-- Button -->
-                    <Button layoutX="14.0" layoutY="355.0" prefHeight="28.0" prefWidth="145.0"
-                            style="-fx-background-color: #EB512B; -fx-text-fill: white; -fx-cursor: hand;"
-                            text="Details anzeigen" textAlignment="LEFT" textFill="WHITE">
-                        <font>
-                            <Font name="Pretendard SemiBold" size="14.0"/>
-                        </font>
-                    </Button>
-                </children>
-            </Pane>
-        </children>
-    </StackPane>
-    <StackPane layoutX="463.0" layoutY="156.0" prefHeight="411.0" prefWidth="720.0">
-        <children>
-            <ImageView fitHeight="410.0" fitWidth="722.0" pickOnBounds="true" smooth="false">
-                <image>
-                    <Image url="@assets/obi-aZKJEvydrNM-unsplash.jpg"/>
-                </image>
-            </ImageView>
-            <Pane prefHeight="200.0" prefWidth="200.0"
-                  style="-fx-background-color: linear-gradient(to bottom,rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.44) 50%, rgba(0, 0, 0, 1) 70%);">
-                <children>
+                <!-- Window Control Buttons -->
+                <HBox spacing="8" alignment="CENTER_RIGHT">
 
-                    <!-- Meine Autos Title -->
-                    <Label layoutX="26.0" layoutY="274.0" text="Meine Autos" textFill="WHITE">
+                    <!-- Minimize Button -->
+                    <Button fx:id="minimizeButton"
+                            text="−"
+                            onAction="#handleMinimize"
+                            style="-fx-background-color: transparent;
+                                   -fx-text-fill: #CCCCCC;
+                                   -fx-font-size: 16px;
+                                   -fx-padding: 4 12 4 12;
+                                   -fx-cursor: hand;
+                                   -fx-background-radius: 4;">
                         <font>
-                            <Font name="Pretendard SemiBold" size="24.0"/>
-                        </font>
-                    </Label>
-
-                    <!-- Description -->
-                    <Label layoutX="26.0" layoutY="317.0"
-                           text="Verwalte deine Fahrzeuge, prüfe Informationen und füge neue Autos hinzu."
-                           textFill="WHITE" wrapText="true">
-                        <font>
-                            <Font size="11.0"/>
-                        </font>
-                    </Label>
-                    <Button layoutX="26.0" layoutY="355.0" prefHeight="28.0" prefWidth="125.0"
-                            style="-fx-background-color: #EB512B; -fx-text-fill: white; -fx-cursor: hand;"
-                            text="Zur Garage" textAlignment="LEFT" textFill="WHITE">
-                        <font>
-                            <Font name="Pretendard SemiBold" size="14.0"/>
-                        </font>
-                    </Button>
-                </children>
-            </Pane>
-        </children>
-    </StackPane>
-    <StackPane layoutX="141.0" layoutY="626.0" prefHeight="337.0" prefWidth="298.0">
-        <children>
-            <ImageView fitHeight="337.0" fitWidth="300.0" pickOnBounds="true" smooth="false">
-                <image>
-                    <Image url="@assets/isabela-kronemberger-OegFhZfw6Ok-unsplash.jpg"/>
-                </image>
-            </ImageView>
-            <Pane prefHeight="200.0" prefWidth="200.0"
-                  style="-fx-background-color: linear-gradient(to bottom,rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.44) 40%, rgba(0, 0, 0, 1) 60%);">
-                <children>
-
-                    <!-- Button -->
-                    <Button fx:id="maintenanceButton"
-                            layoutX="14.0" layoutY="293.0" prefHeight="30.0" prefWidth="150.0"
-                            style="-fx-background-color: #EB512B; -fx-text-fill: white; -fx-cursor: hand;"
-                            onAction="#openMaintenance"
-                            text="Services anzeigen">
-                        <font>
-                            <Font name="Pretendard Medium" size="14.0"/>
+                            <Font name="Arial" size="16.0"/>
                         </font>
                     </Button>
 
-                    <!-- Wartung Title -->
-                    <Label layoutX="14.0" layoutY="206.0" text="Wartung" textFill="WHITE">
+                    <!-- Maximize/Restore Button -->
+                    <Button fx:id="maximizeButton"
+                            text="□"
+                            onAction="#handleMaximize"
+                            style="-fx-background-color: transparent;
+                                   -fx-text-fill: #CCCCCC;
+                                   -fx-font-size: 14px;
+                                   -fx-padding: 4 12 4 12;
+                                   -fx-cursor: hand;
+                                   -fx-background-radius: 4;">
                         <font>
-                            <Font name="Pretendard SemiBold" size="24.0"/>
+                            <Font name="Arial" size="14.0"/>
                         </font>
-                    </Label>
+                    </Button>
 
-                    <!-- Description -->
-                    <Label layoutX="14.0" layoutY="241.0" prefHeight="43.0" prefWidth="274.0"
-                           text="Plane Reparaturen, erinnere dich an Service-Intervalle und führe Wartungshistorien."
-                           textFill="WHITE" wrapText="true">
+                    <!-- Close Button -->
+                    <Button fx:id="closeButton"
+                            text="✕"
+                            onAction="#handleClose"
+                            style="-fx-background-color: transparent;
+                                   -fx-text-fill: #CCCCCC;
+                                   -fx-font-size: 14px;
+                                   -fx-padding: 4 12 4 12;
+                                   -fx-cursor: hand;
+                                   -fx-background-radius: 4;">
                         <font>
-                            <Font size="11.0"/>
+                            <Font name="Arial" size="14.0"/>
+                        </font>
+                    </Button>
+                </HBox>
+            </HBox>
+
+            <!-- App Header Bar -->
+            <HBox alignment="CENTER_LEFT" style="-fx-background-color: #050505;">
+                <padding>
+                    <Insets top="20" right="50" bottom="30" left="50"/>
+                </padding>
+
+                <!-- Logo and Brand -->
+                <HBox alignment="CENTER_LEFT" spacing="12">
+                    <ImageView fitHeight="30.0" fitWidth="60.0" preserveRatio="true">
+                        <image>
+                            <Image url="@assets/Sevenst_logo.png"/>
+                        </image>
+                    </ImageView>
+                    <Label text="Sevenst" textFill="white">
+                        <font>
+                            <Font name="Pretendard Medium" size="18.0"/>
                         </font>
                     </Label>
+                </HBox>
+
+                <!-- Spacer -->
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <!-- User Info -->
+                <Label fx:id="usernameLabel" text="Angemeldet als [Username]"
+                       style="-fx-text-fill: white; -fx-opacity: 0.85;">
+                    <font>
+                        <Font name="Pretendard Medium" size="14.0"/>
+                    </font>
+                </Label>
+            </HBox>
+        </VBox>
+    </top>
+
+
+    <!-- MAIN CONTENT -->
+    <center>
+        <AnchorPane style="-fx-background-color: #050505;">
+
+            <!-- Finanzen Card -->
+            <StackPane layoutX="91.0" layoutY="20.0" prefHeight="411.0" prefWidth="298.0">
+                <children>
+                    <ImageView fitHeight="409.0" fitWidth="297.0" pickOnBounds="true" smooth="false">
+                        <image>
+                            <Image url="@assets/marissa-grootes-ck0i9Dnjtj0-unsplash.jpg"/>
+                        </image>
+                    </ImageView>
+                    <Pane prefHeight="200.0" prefWidth="200.0"
+                          style="-fx-background-color: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.44) 50%, rgba(0, 0, 0, 1) 70%);">
+                        <children>
+                            <Label layoutX="14.0" layoutY="277.0" text="Finanzen" textFill="WHITE">
+                                <font>
+                                    <Font name="Pretendard SemiBold" size="24.0"/>
+                                </font>
+                            </Label>
+
+                            <Label layoutX="14.0" layoutY="312.0" prefHeight="43.0" prefWidth="250.0"
+                                   text="Behalte alle Ausgaben, Einnahmen und laufenden Kosten im Überblick."
+                                   textFill="WHITE" wrapText="true">
+                                <font>
+                                    <Font size="11.0"/>
+                                </font>
+                            </Label>
+
+                            <Button layoutX="14.0" layoutY="355.0" prefHeight="28.0" prefWidth="145.0"
+                                    style="-fx-background-color: #EB512B; -fx-text-fill: white; -fx-cursor: hand; -fx-background-radius: 4;"
+                                    text="Details anzeigen" textFill="WHITE">
+                                <font>
+                                    <Font name="Pretendard SemiBold" size="14.0"/>
+                                </font>
+                            </Button>
+                        </children>
+                    </Pane>
                 </children>
-            </Pane>
-        </children>
-    </StackPane>
+            </StackPane>
 
-</AnchorPane>
+            <!-- Meine Autos Card -->
+            <StackPane layoutX="413.0" layoutY="20.0" prefHeight="411.0" prefWidth="720.0">
+                <children>
+                    <ImageView fitHeight="410.0" fitWidth="722.0" pickOnBounds="true" smooth="false">
+                        <image>
+                            <Image url="@assets/obi-aZKJEvydrNM-unsplash.jpg"/>
+                        </image>
+                    </ImageView>
+                    <Pane prefHeight="200.0" prefWidth="200.0"
+                          style="-fx-background-color: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.44) 50%, rgba(0, 0, 0, 1) 70%);">
+                        <children>
+                            <Label layoutX="26.0" layoutY="274.0" text="Meine Autos" textFill="WHITE">
+                                <font>
+                                    <Font name="Pretendard SemiBold" size="24.0"/>
+                                </font>
+                            </Label>
+
+                            <Label layoutX="26.0" layoutY="317.0"
+                                   text="Verwalte deine Fahrzeuge, prüfe Informationen und füge neue Autos hinzu."
+                                   textFill="WHITE" wrapText="true">
+                                <font>
+                                    <Font size="11.0"/>
+                                </font>
+                            </Label>
+
+                            <Button fx:id="btnOpenGarage"
+                                    layoutX="26.0" layoutY="355.0" prefHeight="28.0" prefWidth="125.0"
+                                    style="-fx-background-color: #EB512B; -fx-text-fill: white; -fx-cursor: hand; -fx-background-radius: 4;"
+                                    text="Zur Garage" textFill="WHITE"
+                                    onAction="#handleOpenGarage">
+                                <font>
+                                    <Font name="Pretendard SemiBold" size="14.0"/>
+                                </font>
+                            </Button>
+                        </children>
+                    </Pane>
+                </children>
+            </StackPane>
+
+            <!-- Wartung Card -->
+            <StackPane layoutX="91.0" layoutY="455.0" prefHeight="337.0" prefWidth="298.0">
+                <children>
+                    <ImageView fitHeight="337.0" fitWidth="300.0" pickOnBounds="true" smooth="false">
+                        <image>
+                            <Image url="@assets/isabela-kronemberger-OegFhZfw6Ok-unsplash.jpg"/>
+                        </image>
+                    </ImageView>
+                    <Pane prefHeight="200.0" prefWidth="200.0"
+                          style="-fx-background-color: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.44) 40%, rgba(0, 0, 0, 1) 60%);">
+                        <children>
+                            <Label layoutX="14.0" layoutY="206.0" text="Wartung" textFill="WHITE">
+                                <font>
+                                    <Font name="Pretendard SemiBold" size="24.0"/>
+                                </font>
+                            </Label>
+
+                            <Label layoutX="14.0" layoutY="241.0" prefHeight="43.0" prefWidth="274.0"
+                                   text="Plane Reparaturen, erinnere dich an Service-Intervalle und führe Wartungshistorien."
+                                   textFill="WHITE" wrapText="true">
+                                <font>
+                                    <Font size="11.0"/>
+                                </font>
+                            </Label>
+
+                            <Button fx:id="maintenanceButton"
+                                    layoutX="14.0" layoutY="293.0" prefHeight="30.0" prefWidth="150.0"
+                                    style="-fx-background-color: #EB512B; -fx-text-fill: white; -fx-cursor: hand; -fx-background-radius: 4;"
+                                    text="Services anzeigen"
+                                    onAction="#openMaintenance">
+                                <font>
+                                    <Font name="Pretendard Medium" size="14.0"/>
+                                </font>
+                            </Button>
+                        </children>
+                    </Pane>
+                </children>
+            </StackPane>
+        </AnchorPane>
+    </center>
+</BorderPane>
