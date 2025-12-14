@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.autovermietung.Controller.CarListController"
+            style="-fx-background-color: #0d0d0d;">
+
+    <VBox spacing="20"
+          AnchorPane.topAnchor="20"
+          AnchorPane.leftAnchor="20"
+          AnchorPane.rightAnchor="20"
+          AnchorPane.bottomAnchor="60">
+
+        <Label text="Meine Garage"
+               style="-fx-text-fill: white; -fx-font-size: 30; -fx-font-weight: bold;" />
+
+        <!-- Scrollbarer Bereich -->
+        <ScrollPane fx:id="scrollPane"
+                    hbarPolicy="ALWAYS"
+                    vbarPolicy="NEVER"
+                    pannable="true"
+                    fitToWidth="false"
+                    fitToHeight="true"
+                    style="
+                        -fx-background-color: transparent;
+                        -fx-background: transparent;
+                        -fx-control-inner-background: transparent;
+                    ">
+
+            <!-- WICHTIG: orientation = VERTICAL, prefWrapLength ≈ Höhe von 3 Karten -->
+            <FlowPane fx:id="carContainer"
+                      orientation="VERTICAL"
+                      prefWrapLength="1150"
+                      hgap="25"
+                      vgap="25"
+                      style="
+                          -fx-background-color: transparent;
+                          -fx-background: transparent;
+                      "/>
+        </ScrollPane>
+
+        <HBox spacing="20">
+            <Button text="Auto hinzufügen" onAction="#handleAddCar"/>
+            <Button text="Zurück" onAction="#handleBack"/>
+        </HBox>
+
+    </VBox>
+
+</AnchorPane>
