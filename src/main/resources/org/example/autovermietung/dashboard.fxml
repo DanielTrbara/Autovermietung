@@ -6,6 +6,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.geometry.Insets?>
+
 
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
@@ -14,8 +16,14 @@
 
     <HBox spacing="40" alignment="center">
 
-        <VBox style="-fx-background-color: #111; -fx-padding: 10;"
+        <VBox style="-fx-background-color: #111;"
               prefWidth="380" prefHeight="240" spacing="10">
+
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
+
+
 
             <ImageView fitWidth="380"
                        style="-fx-background-radius: 20;">
