@@ -5,12 +5,19 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.example.autovermietung.Model.AddCar;
 import org.example.autovermietung.Repository.CarRepository;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 
 public class AddCarController {
 
@@ -19,23 +26,61 @@ public class AddCarController {
     @FXML private TextField txtYear;
     @FXML private TextField txtColor;
     @FXML private TextField txtPrice;
+    @FXML private Label lblImageSelected;
+
+    private String selectedImageName = null;
+
 
     private final CarRepository carRepository = new CarRepository();
+
+    private void saveImageToResources(File file) {
+        try {
+            // 1. Quelle
+            Path source = file.toPath();
+
+            // 2. Ziel (resources)
+            Path resourcesPath = Paths.get(
+                    "src/main/resources/org/example/autovermietung/assets/cars/" + file.getName()
+            );
+
+            // 3. Ziel (BUILD ORDNER → JavaFX lädt von hier!)
+            Path buildPath = Paths.get(
+                    "target/classes/org/example/autovermietung/assets/cars/" + file.getName()
+            );
+
+            // Ordner bei Bedarf erzeugen
+            Files.createDirectories(resourcesPath.getParent());
+            Files.createDirectories(buildPath.getParent());
+
+            // Bild in beide Ordner kopieren
+            Files.copy(source, resourcesPath, StandardCopyOption.REPLACE_EXISTING);
+            Files.copy(source, buildPath, StandardCopyOption.REPLACE_EXISTING);
+
+            System.out.println("Bild gespeichert in:");
+            System.out.println(" → " + resourcesPath);
+            System.out.println(" → " + buildPath);
+
+        } catch (IOException e) {
+            System.err.println("FEHLER beim Kopieren des Bildes: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
 
     @FXML
     private void handleSaveCar(javafx.event.ActionEvent event) {
 
         try {
-            String brand = txtBrand.getText();
-            String model = txtModel.getText();
-            int year = Integer.parseInt(txtYear.getText());
-            String color = txtColor.getText();
-            double pricePerDay = Double.parseDouble(txtPrice.getText());
-
-            // Reihenfolge wie im AddCar-Konstruktor (brand, model, pricePerDay, year, color)
-            AddCar car = new AddCar(brand, model, pricePerDay, year, color);
+            AddCar car = new AddCar();
+            car.setBrand(txtBrand.getText());
+            car.setModel(txtModel.getText());
+            car.setYear(Integer.parseInt(txtYear.getText()));
+            car.setColor(txtColor.getText());
+            car.setPricePerDay(Double.parseDouble(txtPrice.getText()));
+            car.setImageName(selectedImageName); // <-- Bildname speichern!
 
             carRepository.save(car);
+
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText("Erfolg");
@@ -66,4 +111,26 @@ public class AddCarController {
             e.printStackTrace();
         }
     }
+
+    @FXML
+    private void handleSelectImage() {
+
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("Bild auswählen");
+
+        chooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Bilder", "*.png", "*.jpg", "*.jpeg")
+        );
+
+        File file = chooser.showOpenDialog(null);
+
+        if (file != null) {
+            selectedImageName = file.getName();
+            lblImageSelected.setText(selectedImageName);
+
+            // Bild in Ressourcenordner kopieren
+            saveImageToResources(file);
+        }
+    }
+
 }

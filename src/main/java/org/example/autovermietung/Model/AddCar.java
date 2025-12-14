@@ -14,6 +14,9 @@ public class AddCar {
     private double pricePerDay;
     private int year;
     private String color;
+    private String imageName;
+
+
 
     public AddCar() {
     }
@@ -44,6 +47,11 @@ public class AddCar {
     public String getColor() {
         return color;
     }
+    public String getImageName() {
+        return imageName;
+    }
+
+
 
     public void setBrand(String brand) {
         this.brand = brand;
@@ -60,4 +68,8 @@ public class AddCar {
     public void setColor(String color) {
         this.color = color;
     }
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
 }
