@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="1200" prefWidth="1440" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.autovermietung.Controller.MaintenanceController">
+
+    <!-- TOP BAR -->
+    <top>
+        <HBox alignment="CENTER_LEFT" style="-fx-background-color: #000000;">
+            <padding>
+                <Insets bottom="40" left="50" right="50" top="40" />
+            </padding>
+
+            <!-- Logo and Brand -->
+            <HBox alignment="CENTER_LEFT" spacing="12">
+                <ImageView fitHeight="30.0" fitWidth="60.0" preserveRatio="true">
+                    <image>
+                        <Image url="@assets/Sevenst_logo.png" />
+                    </image>
+                </ImageView>
+                <Label text="Sevenst" textFill="white">
+                    <font>
+                        <Font name="Pretendard Medium" size="20.0" />
+                    </font>
+                </Label>
+            </HBox>
+
+            <!-- Spacer -->
+            <Region HBox.hgrow="ALWAYS" />
+
+            <!-- User Info -->
+            <Label style="-fx-text-fill: #CCCCCC; -fx-font-size: 14px;" text="Angemeldet als [Username]">
+                <font>
+                    <Font name="Pretendard Regular" size="14.0" />
+                </font>
+            </Label>
+        </HBox>
+    </top>
+
+    <!-- MAIN CONTENT -->
+    <center>
+        <VBox spacing="0" style="-fx-background-color: #000000;">
+            <padding>
+                <Insets bottom="40" left="50" right="50" top="20" />
+            </padding>
+
+            <!-- Title -->
+            <Label text="Wartungen" textFill="white">
+                <font>
+                    <Font name="Pretendard Bold" size="48.0" />
+                </font>
+                <VBox.margin>
+                    <Insets bottom="60" />
+                </VBox.margin>
+            </Label>
+
+            <!-- Car Maintenance Card -->
+            <HBox alignment="CENTER_LEFT" spacing="0" style="-fx-background-color: #000000;">
+
+                <!-- Car Image with Background -->
+                <StackPane style="-fx-background-color: #FFFFFF; -fx-background-radius: 8;">
+                    <ImageView fx:id="carImage" fitHeight="200" fitWidth="320" preserveRatio="true">
+                        <StackPane.margin>
+                            <Insets bottom="20" left="20" right="20" top="20" />
+                        </StackPane.margin>
+                    </ImageView>
+                </StackPane>
+
+                <!-- Car Details -->
+                <VBox alignment="TOP_LEFT" spacing="12">
+                    <HBox.margin>
+                        <Insets left="50" />
+                    </HBox.margin>
+
+                    <Label text="2016 VW Phaeton" textFill="white">
+                        <font>
+                            <Font name="Pretendard SemiBold" size="32.0" />
+                        </font>
+                    </Label>
+
+                    <Label style="-fx-opacity: 0.9;" text="Aktueller Stand:" textFill="white">
+                        <font>
+                            <Font name="Pretendard SemiBold" size="16.0" />
+                        </font>
+                        <VBox.margin>
+                            <Insets top="10" />
+                        </VBox.margin>
+                    </Label>
+
+                    <Label fx:id="oilStatus" style="-fx-opacity: 0.85;" text="Ölwechsel: noch 8000 km" textFill="white">
+                        <font>
+                            <Font name="Pretendard Regular" size="15.0" />
+                        </font>
+                    </Label>
+
+                    <Label fx:id="engineStatus" style="-fx-opacity: 0.85;" text="Motorschaden: -" textFill="white">
+                        <font>
+                            <Font name="Pretendard Regular" size="15.0" />
+                        </font>
+                    </Label>
+
+                    <Label fx:id="repairStatus" style="-fx-opacity: 0.85;" text="Reparaturen: " textFill="white">
+                        <font>
+                            <Font name="Pretendard Regular" size="15.0" />
+                        </font>
+                    </Label>
+                </VBox>
+
+                <!-- Spacer -->
+                <Region HBox.hgrow="ALWAYS" />
+
+                <!-- Service Call Section -->
+                <VBox alignment="TOP_RIGHT" spacing="20">
+
+                    <Button style="-fx-background-color: #EB512B; -fx-text-fill: white;                                    -fx-font-size: 16px; -fx-padding: 14 32 14 32;                                    -fx-background-radius: 4; -fx-cursor: hand;" text="Service anrufen">
+                        <font>
+                            <Font name="Pretendard Medium" size="16.0" />
+                        </font>
+                    </Button>
+
+                    <VBox alignment="TOP_RIGHT" spacing="4">
+                        <HBox alignment="CENTER_RIGHT" spacing="8">
+                            <Label style="-fx-font-size: 14px;" />
+                            <Label style="-fx-opacity: 0.85;" text="TÜV SÜD Service-Center" textFill="white">
+                                <font>
+                                    <Font name="Pretendard Regular" size="14.0" />
+                                </font>
+                            </Label>
+                        </HBox>
+                        <Label style="-fx-opacity: 0.85;" text="Fritz-Müller-Straße 103" textFill="white">
+                            <font>
+                                <Font name="Pretendard Regular" size="14.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="22" />
+                            </VBox.margin>
+                        </Label>
+                        <Label style="-fx-opacity: 0.85;" text="73730 Esslingen am Neckar" textFill="white">
+                            <font>
+                                <Font name="Pretendard Regular" size="14.0" />
+                            </font>
+                            <VBox.margin>
+                                <Insets left="22" />
+                            </VBox.margin>
+                        </Label>
+                    </VBox>
+                </VBox>
+            </HBox>
+
+            <!-- Separator Line -->
+            <Separator style="-fx-background-color: #333333; -fx-border-color: #333333;">
+                <VBox.margin>
+                    <Insets top="50" />
+                </VBox.margin>
+            </Separator>
+
+        </VBox>
+    </center>
+</BorderPane>
