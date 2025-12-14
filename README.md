@@ -55,36 +55,4 @@ Daten erscheinen nach Neustart wieder
 
 ![Auto_hinzufugen](https://github.com/user-attachments/assets/3d02e599-a62f-4026-9f42-b0d80c010dcb)
 
-
-
-#
-
-### Abdullah / Daniel
-
-- [x] Dashboard mit Garage und Autos hizufügen
-- [ ] Erweiterte Ansicht auf Autos ( Tank anzeige, Kilometerstand, Farbe, Vorbesitzer, TÜV, ... )
-- [ ] Filter für die Autos ( nach marke, nach farbe, ... )
-- [ ] Sortier funktion ( nach Preis, Baujahr, ... )
-
-### Chris
-
-- [ ] Finanzen Datenbank
-- [ ] Einnahmen, Ausgaben und Gewinn Statistik
-- [ ] Filter (Bsp. monatliche Daten)
-- [ ] Einnahmen Bereich komplett
-
-### Lionel
-
-- [ ] Dashboard mit CSS gestalten
-- [ ] CSS für Car Liste
-- [ ] CSS für Kunden Liste
-- [ ] CSS für Einnahmen Ausgaben
-
-### Mirac
-
-- [ ] Kunden Datenbank richtig aufstellen
-- [ ] Kunden Seite erstellen 
-- [ ] Facade Pattern bei Kunden einfügen
-- [ ] Seite Designen (scenebuilder sofern möglich)
-
 #
