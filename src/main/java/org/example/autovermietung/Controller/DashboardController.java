@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -168,7 +169,7 @@ public class DashboardController {
     private void handleOpenGarage(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/org.example.autovermietung/carlist.fxml")
+                    getClass().getResource("/org/example/autovermietung/CarList.fxml")
             );
 
             Scene scene = new Scene(loader.load());

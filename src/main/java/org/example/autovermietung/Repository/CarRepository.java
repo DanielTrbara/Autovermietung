@@ -29,12 +29,11 @@ public class CarRepository {
         }
     }
 
-    // NEU: löschen
     public void delete(AddCar addCar) {
         EntityManager em = JpaUtil.getEntityManager();
         try {
             em.getTransaction().begin();
-            AddCar managed = em.merge(addCar); // falls detached
+            AddCar managed = em.merge(addCar);
             em.remove(managed);
             em.getTransaction().commit();
         } finally {
