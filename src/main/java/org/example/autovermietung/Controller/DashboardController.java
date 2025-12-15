@@ -12,13 +12,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
+import java.net.URL;
 
 public class DashboardController {
 
     @FXML
     private Button btnOpenGarage;
+
+    @FXML private Button KundenButton;
 
     @FXML
     private Label usernameLabel;
@@ -167,15 +169,24 @@ public class DashboardController {
 
     @FXML
     private void handleOpenGarage(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/org/example/autovermietung/CarList.fxml")
-            );
+        switchScene(event, "/org/example/autovermietung/CarList.fxml");
+    }
 
-            Scene scene = new Scene(loader.load());
+    @FXML
+    private void handleOpenBenutzer(ActionEvent event) {
+
+        switchScene(event, "/org/example/autovermietung/Benutzer.fxml");
+    }
+
+    private void switchScene(ActionEvent event, String fxmlPath) {
+        try {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            stage.setScene(scene);
-            stage.show();
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = loader.load();
+
+
+            stage.getScene().setRoot(root);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -207,6 +218,7 @@ public class DashboardController {
             e.printStackTrace();
         }
     }
+
 
 
     public Label getUsernameLabel() {
