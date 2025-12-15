@@ -12,6 +12,8 @@ module org.example.autovermietung {
     requires net.synedra.validatorfx;
     requires org.kordamp.ikonli.javafx;
     requires eu.hansolo.tilesfx;
+    requires jdk.compiler;
+    requires java.desktop;
 
     opens org.example.autovermietung to javafx.fxml, org.hibernate.orm.core;
 
