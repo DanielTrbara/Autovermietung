@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.autovermietung.View.EarningsViewController"
+            prefHeight="400.0" prefWidth="600.0">
+
+    <!-- Eingabebereich -->
+    <HBox spacing="10" layoutX="10" layoutY="10">
+        <TextField fx:id="betragField" promptText="Betrag" />
+        <DatePicker fx:id="datumPicker" />
+        <Button text="Hinzufügen" fx:id="addButton" />
+    </HBox>
+
+    <!-- Liste der Einnahmen -->
+    <ListView fx:id="earningsList" layoutX="10" layoutY="50" prefWidth="580" prefHeight="300" />
+
+    <!-- Gesamtbetrag -->
+    <Label fx:id="totalLabel" layoutX="10" layoutY="360" text="Gesamt: 0.0 €" />
+
+</AnchorPane>
+
