@@ -38,7 +38,7 @@ public class Dashboard extends Application {
 
 
             DashboardController dashboardController = fxmlLoader.getController();
-
+            
 
             // Stage-Konfig
             stage.setTitle("Autovermietung");
