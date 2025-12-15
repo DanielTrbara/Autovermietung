@@ -1,9 +1,9 @@
 package org.example.autovermietung;
 
-import javafx.application.Application;
+import org.example.autovermietung.Model.Dashboard;
 
 public class Launcher {
     public static void main(String[] args) {
-        Application.launch(HelloApplication.class, args);
+        Dashboard.main(args);
     }
 }
