@@ -43,7 +43,7 @@ public class Dashboard extends Application {
 
             // Stage-Konfig
             stage.setTitle("Autovermietung");
-            stage.initStyle(StageStyle.UNDECORATED);
+            //stage.initStyle(StageStyle.UNDECORATED);
 
             stage.setScene(scene);
             stage.setResizable(true);
