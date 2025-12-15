@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import org.example.autovermietung.Controller.DashboardController;
 
 public class Dashboard extends Application {
@@ -43,7 +42,7 @@ public class Dashboard extends Application {
 
             // Stage-Konfig
             stage.setTitle("Autovermietung");
-            stage.initStyle(StageStyle.UNDECORATED);
+            // stage.initStyle(StageStyle.UNDECORATED); Wird später geändert! Funktionen und Methoden schon implementiert.
 
             stage.setScene(scene);
             stage.setResizable(true);
