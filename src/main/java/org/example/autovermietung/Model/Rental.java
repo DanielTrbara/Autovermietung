@@ -12,7 +12,7 @@ public class Rental {
     private int id;
 
     @ManyToOne
-    private Customer customer;
+    private Benutzer benutzer;
 
     @ManyToOne
     private AddCar addCar;
@@ -22,11 +22,52 @@ public class Rental {
 
     public Rental() {}
 
-    public Rental(Customer customer, AddCar addCar,
+    public Rental(Benutzer benutzer, AddCar addCar,
                   LocalDate startDatum, LocalDate endDatum) {
-        this.customer = customer;
+        this.benutzer = benutzer;
         this.addCar = addCar;
         this.startDatum = startDatum;
         this.endDatum = endDatum;
     }
+
+    public Benutzer getBenutzer() {
+        return benutzer;
+    }
+
+    public void setBenutzer(Benutzer benutzer) {
+        this.benutzer = benutzer;
+    }
+
+    public AddCar getAddCar() {
+        return addCar;
+    }
+
+    public void setAddCar(AddCar addCar) {
+        this.addCar = addCar;
+    }
+
+    public LocalDate getStartDatum() {
+        return startDatum;
+    }
+
+    public void setStartDatum(LocalDate startDatum) {
+        this.startDatum = startDatum;
+    }
+
+    public LocalDate getEndDatum() {
+        return endDatum;
+    }
+
+    public void setEndDatum(LocalDate endDatum) {
+        this.endDatum = endDatum;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 }
