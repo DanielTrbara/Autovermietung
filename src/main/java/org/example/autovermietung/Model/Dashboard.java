@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import org.example.autovermietung.Controller.DashboardController;
 
 public class Dashboard extends Application {
@@ -40,7 +39,7 @@ public class Dashboard extends Application {
 
 
             DashboardController dashboardController = fxmlLoader.getController();
-
+            
 
             // Stage-Konfig
             stage.setTitle("Autovermietung");
@@ -59,5 +58,6 @@ public class Dashboard extends Application {
 
     public static void main(String[] args) {
         launch();
+
     }
 }
