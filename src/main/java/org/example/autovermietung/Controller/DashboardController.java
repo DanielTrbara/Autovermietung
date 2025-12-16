@@ -181,12 +181,9 @@ public class DashboardController {
     private void switchScene(ActionEvent event, String fxmlPath) {
         try {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            Parent root = loader.load();
-
-
-            stage.getScene().setRoot(root);
+            stage.setScene(scene);
+            stage.setMaximized(true);
+            stage.show();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -203,15 +200,13 @@ public class DashboardController {
 
             Stage stage = (Stage) maintenanceButton.getScene().getWindow();
 
-            Scene scene = new Scene(root, 1440, 1200);
-            stage.setMaxWidth(1440);
-            stage.setMaxHeight(1200);
-            stage.setResizable(true);
+            Scene scene = new Scene(root);
             scene.getStylesheets().add(
                     getClass().getResource("/style/style.css").toExternalForm()
             );
 
             stage.setScene(scene);
+            stage.setMaximized(true);   // 🔥 wichtig
             stage.show();
 
         } catch (Exception e) {

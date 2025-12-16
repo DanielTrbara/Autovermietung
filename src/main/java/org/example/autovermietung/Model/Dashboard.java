@@ -27,8 +27,9 @@ public class Dashboard extends Application {
             Parent root = fxmlLoader.load();
 
             // Laden der CSS
-            Scene scene = new Scene(root, 1280, 1000);
+            Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/style/style.css").toExternalForm());
+
 
 
 //            --- DEBUGGING FALLS CSS NICHT ERKANNT WIRD ---
@@ -42,11 +43,12 @@ public class Dashboard extends Application {
 
             // Stage-Konfig
             stage.setTitle("Autovermietung");
-            // stage.initStyle(StageStyle.UNDECORATED); Wird später geändert! Funktionen und Methoden schon implementiert.
+            stage.initStyle(StageStyle.UNDECORATED); // 🔥 DAS ist der entscheidende Fix
 
             stage.setScene(scene);
-            stage.setResizable(true);
+            stage.setMaximized(true);
             stage.show();
+
 
 
         } catch (Exception e) {
