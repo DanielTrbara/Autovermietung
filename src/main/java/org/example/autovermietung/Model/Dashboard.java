@@ -47,6 +47,7 @@ public class Dashboard extends Application {
 
             stage.setScene(scene);
             stage.setResizable(true);
+            stage.setFullScreen(true);
             stage.show();
 
 
