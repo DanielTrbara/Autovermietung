@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.autovermietung.Controller.BenutzerController">
+
+    <top>
+        <HBox spacing="10" alignment="CENTER_LEFT">
+            <TextField fx:id="txtSuche"
+                       promptText="Suchen (Name, E-Mail, Telefon)…"
+                       HBox.hgrow="ALWAYS"/>
+            <Button text="Neu" onAction="#onNeu"/>
+        </HBox>
+    </top>
+
+    <center>
+        <TableView fx:id="tableBenutzer">
+            <columns>
+                <TableColumn fx:id="colVorname" text="Vorname"/>
+                <TableColumn fx:id="colNachname" text="Nachname"/>
+                <TableColumn fx:id="colAlter" text="Alter"/>
+                <TableColumn fx:id="colEmail" text="E-Mail"/>
+                <TableColumn fx:id="colTelefon" text="Telefon" />
+                <TableColumn fx:id="colAdresse" text="Adresse" />
+            </columns>
+        </TableView>
+    </center>
+
+    <bottom>
+        <VBox spacing="10">
+            <GridPane hgap="10" vgap="10">
+                <Label text="Vorname:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtVorname" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Nachname:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtNachname" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label text="Alter:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtAlter" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <Label text="E-Mail:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtEmail" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                <Label text="Telefon:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtTelefon" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                <Label text="Adresse:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                <TextField fx:id="txtAdresse" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+            </GridPane>
+
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <Button text="Hinzufügen" onAction="#onHinzufuegen"/>
+                <Button text="Löschen" onAction="#onLoeschen"/>
+            </HBox>
+        </VBox>
+    </bottom>
+
+</BorderPane>
