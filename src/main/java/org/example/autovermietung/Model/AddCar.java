@@ -7,7 +7,7 @@ public class AddCar {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int car_id;
 
     private String brand;
     private String model;
@@ -30,7 +30,7 @@ public class AddCar {
     }
 
     public int getId() {
-        return id;
+        return car_id;
     }
     public String getBrand() {
         return brand;

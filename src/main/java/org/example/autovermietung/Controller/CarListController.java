@@ -1,8 +1,8 @@
 package org.example.autovermietung.Controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Scene;
@@ -11,7 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -26,49 +27,59 @@ import java.util.ResourceBundle;
 
 public class CarListController implements Initializable {
 
-    @FXML
-    private FlowPane carContainer;
-
-    @FXML
-    private ScrollPane scrollPane;
+    @FXML private GridPane carGrid;
+    @FXML private ScrollPane scrollPane;
 
     private final CarRepository carRepository = new CarRepository();
 
+    private static final int ROWS = 3;
     private static final int CARD_WIDTH = 300;
     private static final int CARD_HEIGHT = 350;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        // ScrollPane / Viewport transparent
-        scrollPane.setStyle("-fx-background-color: transparent; -fx-background: transparent; -fx-control-inner-background: transparent;");
-        scrollPane.applyCss();
-        Node viewport = scrollPane.lookup(".viewport");
-        if (viewport != null) {
-            viewport.setStyle("-fx-background-color: transparent;");
-        }
-
-        // Autos aus der DB holen
-        List<AddCar> cars = carRepository.findAll();
-
-        // Karten erzeugen
-        for (AddCar car : cars) {
-            Pane card = createCarCard(car);
-            carContainer.getChildren().add(card);
-        }
-
-        scrollPane.setOnScroll(event -> {
-            double delta = event.getDeltaY();   // Mausrad-Bewegung (hoch/runter)
-            double current = scrollPane.getHvalue(); // aktueller Horizontal-Scroll
-
-            // Stärke des Scrollens einstellen (0.002–0.02)
-            double scrollSpeed = 0.003;
-
-            scrollPane.setHvalue(current - delta * scrollSpeed);
+        // ScrollPane/Viewport transparent -> entfernt den weißen/grauen Hintergrund
+        scrollPane.setStyle("-fx-background-color: transparent; -fx-background: transparent;");
+        scrollPane.viewportBoundsProperty().addListener((obs, oldVal, newVal) -> {
+            // sorgt dafür, dass der Viewport nicht "weiß" rendert
+            scrollPane.lookup(".viewport").setStyle("-fx-background-color: transparent;");
         });
 
-        // WICHTIG: keine feste Höhe/Breite mehr im Controller setzen
-        // Das übernimmt jetzt FlowPane mit orientation=VERTICAL + prefWrapLength.
+        loadCars();
+
+        // Mausrad: vertikales scrollen -> horizontal verschieben
+        scrollPane.addEventFilter(ScrollEvent.SCROLL, e -> {
+            if (e.getDeltaY() != 0) {
+                double delta = -e.getDeltaY(); // hoch/runter
+                double width = scrollPane.getContent().getBoundsInLocal().getWidth();
+                double viewport = scrollPane.getViewportBounds().getWidth();
+
+                if (width > viewport) {
+                    double maxH = width - viewport;
+                    double currentPixel = scrollPane.getHvalue() * maxH;
+                    double newPixel = currentPixel + delta * 2.0; // Speed-Faktor
+
+                    newPixel = Math.max(0, Math.min(maxH, newPixel));
+                    scrollPane.setHvalue(newPixel / maxH);
+                    e.consume();
+                }
+            }
+        });
+    }
+
+    private void loadCars() {
+        carGrid.getChildren().clear();
+
+        List<AddCar> cars = carRepository.findAll();
+
+        for (int i = 0; i < cars.size(); i++) {
+            int column = i / ROWS;   // nach 3 Items -> neue Spalte
+            int row = i % ROWS;      // 0,1,2
+
+            Pane card = createCarCard(cars.get(i));
+            carGrid.add(card, column, row);
+        }
     }
 
     private Pane createCarCard(AddCar car) {
@@ -79,14 +90,12 @@ public class CarListController implements Initializable {
         card.setPrefSize(CARD_WIDTH, CARD_HEIGHT);
         card.setMaxWidth(CARD_WIDTH);
 
-        // Default Design
         card.setStyle(
                 "-fx-background-color: #1a1a1a; " +
                         "-fx-background-radius: 15; " +
                         "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 20, 0.2, 0, 5);"
         );
 
-        // Hover-Effekt
         card.setOnMouseEntered(e -> card.setStyle(
                 "-fx-background-color: #242424; " +
                         "-fx-background-radius: 15; " +
@@ -103,17 +112,14 @@ public class CarListController implements Initializable {
                         "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.35), 20, 0.2, 0, 5);"
         ));
 
-        // Bild
         ImageView imageView = new ImageView(loadCarImage(car.getImageName()));
         imageView.setFitWidth(CARD_WIDTH);
         imageView.setFitHeight(150);
         imageView.setPreserveRatio(true);
 
-        // Titel
         Label title = new Label(car.getBrand() + " " + car.getModel());
         title.setStyle("-fx-text-fill: white; -fx-font-size: 18; -fx-font-weight: bold;");
 
-        // Details
         VBox details = new VBox(5);
         details.getChildren().addAll(
                 makeDetail("Baujahr: " + car.getYear()),
@@ -121,17 +127,35 @@ public class CarListController implements Initializable {
                 makeDetail("Preis/Tag: " + car.getPricePerDay() + " €")
         );
 
-        // Löschen-Button
         Button removeButton = new Button("Löschen");
-        removeButton.setStyle(
-                "-fx-background-color: #d93636; -fx-text-fill: white; -fx-background-radius: 10;"
-        );
+        removeButton.setStyle("-fx-background-color: #d93636; -fx-text-fill: white; -fx-background-radius: 10;");
         removeButton.setOnAction(event -> {
             carRepository.delete(car);
-            carContainer.getChildren().remove(card);
+            loadCars(); // ✅ Grid neu laden (sauber, keine falschen Removes)
         });
 
-        card.getChildren().addAll(imageView, title, details, removeButton);
+        Button editButton = new Button("Bearbeiten");
+        editButton.setStyle("-fx-background-color: #444; -fx-text-fill: white; -fx-background-radius: 10;");
+        editButton.setOnAction(e -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(
+                        getClass().getResource("/org/example/autovermietung/AddCar-View.fxml")
+                );
+                Scene scene = new Scene(loader.load());
+
+                AddCarController controller = loader.getController();
+                controller.setCarToEdit(car);
+
+                Stage stage = (Stage) card.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        card.getChildren().addAll(imageView, title, details, removeButton, editButton);
         return card;
     }
 
@@ -150,21 +174,15 @@ public class CarListController implements Initializable {
         }
 
         try {
-            return new Image(
-                    Objects.requireNonNull(getClass().getResource(fullPath)).toString()
-            );
+            return new Image(Objects.requireNonNull(getClass().getResource(fullPath)).toString());
         } catch (Exception e) {
-            return new Image(
-                    Objects.requireNonNull(getClass().getResource(basePath + "placeholder.png")).toString()
-            );
+            return new Image(Objects.requireNonNull(getClass().getResource(basePath + "placeholder.png")).toString());
         }
     }
 
     @FXML
     private void handleAddCar(javafx.event.ActionEvent event) throws IOException {
-        FXMLLoader loader =
-                new FXMLLoader(getClass().getResource("/org/example/autovermietung/AddCar-View.fxml"));
-
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/autovermietung/AddCar-View.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         Scene scene = new Scene(loader.load());
@@ -180,9 +198,7 @@ public class CarListController implements Initializable {
 
     @FXML
     private void handleBack(javafx.event.ActionEvent event) throws IOException {
-        FXMLLoader loader =
-                new FXMLLoader(getClass().getResource("/org/example/autovermietung/Dashboard.fxml"));
-
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/autovermietung/Dashboard.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         Scene scene = new Scene(loader.load());
