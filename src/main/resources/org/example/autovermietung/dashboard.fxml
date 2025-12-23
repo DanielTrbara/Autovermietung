@@ -5,9 +5,12 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<BorderPane prefHeight="1200.0" prefWidth="1440.0" style="-fx-background-color: #050505;"
-            xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.example.autovermietung.Controller.DashboardController">
+<BorderPane
+        style="-fx-background-color: #050505;"
+        xmlns="http://javafx.com/javafx/25"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="org.example.autovermietung.Controller.DashboardController">
+
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -216,6 +219,8 @@
                     </Pane>
                 </children>
             </StackPane>
+
+            <!-- Benutzer -->
             <StackPane layoutX="413.0" layoutY="455.0" prefHeight="336.0" prefWidth="722.0">
                 <children>
                     <ImageView fitHeight="336.0" fitWidth="720.0" pickOnBounds="true" smooth="false">
@@ -239,8 +244,10 @@
                                     <Font size="11.0"/>
                                 </font>
                             </Label>
-                            <Button fx:id="maintenanceButton1" layoutX="20.0" layoutY="292.0" prefHeight="30.0"
-                                    prefWidth="150.0"
+                            <Button fx:id="KundenButton"
+                                    layoutX="20.0" layoutY="292.0"
+                                    prefHeight="30.0" prefWidth="150.0"
+                                    onAction="#handleOpenBenutzer"
                                     style="-fx-background-color: #EB512B; -fx-text-fill: white; -fx-cursor: hand; -fx-background-radius: 0;"
                                     text="Kunden kontaktieren">
                                 <font>

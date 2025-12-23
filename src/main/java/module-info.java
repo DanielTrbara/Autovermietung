@@ -1,12 +1,17 @@
 module org.example.autovermietung {
-    requires java.sql;
+    // JavaFX
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
 
+    // JDBC / SQLite
+    requires java.sql;
+
+    // JPA / Hibernate
     requires jakarta.persistence;
     requires org.hibernate.orm.core;
 
+    // Optional UI libs (keep only if you actually use them)
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;
     requires net.synedra.validatorfx;
@@ -15,13 +20,14 @@ module org.example.autovermietung {
     requires jdk.compiler;
     requires java.desktop;
 
-    opens org.example.autovermietung to javafx.fxml, org.hibernate.orm.core;
+    // Allow FXMLLoader to access controllers
+    opens org.example.autovermietung.Controller to javafx.fxml;
 
+    // Allow Hibernate/JPA reflection access to entities
+    opens org.example.autovermietung.Model to org.hibernate.orm.core, jakarta.persistence;
+
+    // Export packages (only needed if other modules depend on them)
     exports org.example.autovermietung;
     exports org.example.autovermietung.Controller;
-    opens org.example.autovermietung.Controller to javafx.fxml, org.hibernate.orm.core;
     exports org.example.autovermietung.Model;
-    opens org.example.autovermietung.Model to javafx.fxml, org.hibernate.orm.core;
-    exports org.example.autovermietung.Repository;
-    opens org.example.autovermietung.Repository to javafx.fxml, org.hibernate.orm.core;
 }

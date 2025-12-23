@@ -12,13 +12,15 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
 import java.io.IOException;
+import java.net.URL;
 
 public class DashboardController {
 
     @FXML
     private Button btnOpenGarage;
+
+    @FXML private Button KundenButton;
 
     @FXML
     private Label usernameLabel;
@@ -167,14 +169,20 @@ public class DashboardController {
 
     @FXML
     private void handleOpenGarage(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/org/example/autovermietung/CarList.fxml")
-            );
+        switchScene(event, "/org/example/autovermietung/CarList.fxml");
+    }
 
-            Scene scene = new Scene(loader.load());
+    @FXML
+    private void handleOpenBenutzer(ActionEvent event) {
+
+        switchScene(event, "/org/example/autovermietung/Benutzer.fxml");
+    }
+
+    private void switchScene(ActionEvent event, String fxmlPath) {
+        try {
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
+            stage.setMaximized(true);
             stage.show();
 
         } catch (IOException e) {
@@ -192,21 +200,20 @@ public class DashboardController {
 
             Stage stage = (Stage) maintenanceButton.getScene().getWindow();
 
-            Scene scene = new Scene(root, 1440, 1200);
-            stage.setMaxWidth(1440);
-            stage.setMaxHeight(1200);
-            stage.setResizable(true);
+            Scene scene = new Scene(root);
             scene.getStylesheets().add(
                     getClass().getResource("/style/style.css").toExternalForm()
             );
 
             stage.setScene(scene);
+            stage.setMaximized(true);   // 🔥 wichtig
             stage.show();
 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
 
 
     public Label getUsernameLabel() {

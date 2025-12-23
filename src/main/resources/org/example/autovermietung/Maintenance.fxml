@@ -69,16 +69,19 @@
             <HBox alignment="CENTER_LEFT" spacing="0" style="-fx-background-color: #000000;">
 
                 <!-- Car Image with Background -->
-                <StackPane style="-fx-background-color: #FFFFFF; -fx-background-radius: 8;">
+                <StackPane style="-fx-background-color: #FFFFFF;">
                     <ImageView fx:id="carImage" fitHeight="200" fitWidth="320" preserveRatio="true">
                         <StackPane.margin>
                             <Insets bottom="20" left="20" right="20" top="20" />
                         </StackPane.margin>
+                  <image>
+                     <Image url="@assets/cars/VW_phaeton_img.png" />
+                  </image>
                     </ImageView>
                 </StackPane>
 
                 <!-- Car Details -->
-                <VBox alignment="TOP_LEFT" spacing="12">
+                <VBox alignment="TOP_LEFT" prefHeight="121.0" prefWidth="254.0" spacing="12">
                     <HBox.margin>
                         <Insets left="50" />
                     </HBox.margin>
@@ -91,26 +94,26 @@
 
                     <Label style="-fx-opacity: 0.9;" text="Aktueller Stand:" textFill="white">
                         <font>
-                            <Font name="Pretendard SemiBold" size="16.0" />
+                            <Font name="System Bold" size="16.0" />
                         </font>
                         <VBox.margin>
                             <Insets top="10" />
                         </VBox.margin>
                     </Label>
 
-                    <Label fx:id="oilStatus" style="-fx-opacity: 0.85;" text="Ölwechsel: noch 8000 km" textFill="white">
+                    <Label fx:id="oilStatus" text="Ölwechsel: noch 8000 km" textFill="white">
                         <font>
                             <Font name="Pretendard Regular" size="15.0" />
                         </font>
                     </Label>
 
-                    <Label fx:id="engineStatus" style="-fx-opacity: 0.85;" text="Motorschaden: -" textFill="white">
+                    <Label fx:id="engineStatus" text="Motorschaden: -" textFill="white">
                         <font>
                             <Font name="Pretendard Regular" size="15.0" />
                         </font>
                     </Label>
 
-                    <Label fx:id="repairStatus" style="-fx-opacity: 0.85;" text="Reparaturen: " textFill="white">
+                    <Label fx:id="repairStatus" text="Reparaturen: " textFill="white">
                         <font>
                             <Font name="Pretendard Regular" size="15.0" />
                         </font>
@@ -123,22 +126,22 @@
                 <!-- Service Call Section -->
                 <VBox alignment="TOP_RIGHT" spacing="20">
 
-                    <Button style="-fx-background-color: #EB512B; -fx-text-fill: white;                                    -fx-font-size: 16px; -fx-padding: 14 32 14 32;                                    -fx-background-radius: 4; -fx-cursor: hand;" text="Service anrufen">
+                    <Button prefHeight="53.0" prefWidth="177.0" style="-fx-background-color: #EB512B; -fx-text-fill: white;                                    -fx-font-size: 16px; -fx-padding: 14 32 14 32;                                    -fx-background-radius: 4; -fx-cursor: hand;" text="Service anrufen">
                         <font>
-                            <Font name="Pretendard Medium" size="16.0" />
+                            <Font name="System Bold" size="16.0" />
                         </font>
                     </Button>
 
                     <VBox alignment="TOP_RIGHT" spacing="4">
                         <HBox alignment="CENTER_RIGHT" spacing="8">
                             <Label style="-fx-font-size: 14px;" />
-                            <Label style="-fx-opacity: 0.85;" text="TÜV SÜD Service-Center" textFill="white">
+                            <Label prefHeight="20.0" prefWidth="177.0" style="-fx-opacity: 0.85;" text="TÜV SÜD Service-Center" textFill="white">
                                 <font>
                                     <Font name="Pretendard Regular" size="14.0" />
                                 </font>
                             </Label>
                         </HBox>
-                        <Label style="-fx-opacity: 0.85;" text="Fritz-Müller-Straße 103" textFill="white">
+                        <Label prefHeight="20.0" prefWidth="177.0" style="-fx-opacity: 0.85;" text="Fritz-Müller-Straße 103" textFill="white">
                             <font>
                                 <Font name="Pretendard Regular" size="14.0" />
                             </font>
@@ -146,7 +149,7 @@
                                 <Insets left="22" />
                             </VBox.margin>
                         </Label>
-                        <Label style="-fx-opacity: 0.85;" text="73730 Esslingen am Neckar" textFill="white">
+                        <Label prefHeight="20.0" prefWidth="178.0" style="-fx-opacity: 0.85;" text="73730 Esslingen am Neckar" textFill="white">
                             <font>
                                 <Font name="Pretendard Regular" size="14.0" />
                             </font>
@@ -159,7 +162,7 @@
             </HBox>
 
             <!-- Separator Line -->
-            <Separator style="-fx-background-color: #333333; -fx-border-color: #333333;">
+            <Separator opacity="0.4" style="-fx-background-color: #333333; -fx-border-color: #333333;">
                 <VBox.margin>
                     <Insets top="50" />
                 </VBox.margin>

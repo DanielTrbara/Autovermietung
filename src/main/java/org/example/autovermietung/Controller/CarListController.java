@@ -184,15 +184,31 @@ public class CarListController implements Initializable {
     private void handleAddCar(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/autovermietung/AddCar-View.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(loader.load()));
+
+        Scene scene = new Scene(loader.load());
+        scene.getStylesheets().add(
+                getClass().getResource("/style/style.css").toExternalForm()
+        );
+
+        stage.setScene(scene);
+        stage.setMaximized(true);   // 🔥 DAS war der fehlende Teil
         stage.show();
     }
+
 
     @FXML
     private void handleBack(javafx.event.ActionEvent event) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/autovermietung/Dashboard.fxml"));
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        stage.setScene(new Scene(loader.load()));
+
+        Scene scene = new Scene(loader.load());
+        scene.getStylesheets().add(
+                getClass().getResource("/style/style.css").toExternalForm()
+        );
+
+        stage.setScene(scene);
+        stage.setMaximized(true);   // 🔥 WICHTIG
         stage.show();
     }
+
 }
