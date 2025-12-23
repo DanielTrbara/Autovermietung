@@ -1,5 +1,6 @@
 package org.example.autovermietung.Controller;
 
+import jakarta.persistence.EntityManager;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -9,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.example.autovermietung.JpaUtil;
 import org.example.autovermietung.Model.AddCar;
 import org.example.autovermietung.Repository.CarRepository;
 
@@ -30,6 +32,7 @@ public class AddCarController {
 
     private String selectedImageName = null;
 
+    private AddCar editingCar = null;
 
     private final CarRepository carRepository = new CarRepository();
 
@@ -66,36 +69,50 @@ public class AddCarController {
         }
     }
 
+    public void update(AddCar car) {
+        EntityManager em = JpaUtil.getEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.merge(car);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+    }
 
     @FXML
     private void handleSaveCar(javafx.event.ActionEvent event) {
 
         try {
-            AddCar car = new AddCar();
+            AddCar car;
+
+            // 🔁 EDIT vs NEU
+            if (editingCar != null) {
+                car = editingCar;
+            } else {
+                car = new AddCar();
+            }
+
             car.setBrand(txtBrand.getText());
             car.setModel(txtModel.getText());
             car.setYear(Integer.parseInt(txtYear.getText()));
             car.setColor(txtColor.getText());
             car.setPricePerDay(Double.parseDouble(txtPrice.getText()));
-            car.setImageName(selectedImageName); // <-- Bildname speichern!
+            car.setImageName(selectedImageName);
 
-            carRepository.save(car);
-
-
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText("Erfolg");
-            alert.setContentText("Auto wurde gespeichert.");
-            alert.showAndWait();
+            if (editingCar == null) {
+                carRepository.save(car);
+            } else {
+                carRepository.update(car);
+            }
 
             handleBack(event);
 
         } catch (Exception e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Fehler");
-            alert.setContentText("Bitte überprüfe alle Eingaben (Jahr, Preis usw.).");
-            alert.showAndWait();
+            new Alert(Alert.AlertType.ERROR, "Bitte überprüfe alle Eingaben.").show();
         }
     }
+
 
     @FXML
     private void handleBack(javafx.event.ActionEvent event) {
@@ -132,5 +149,26 @@ public class AddCarController {
             saveImageToResources(file);
         }
     }
+
+    public void setCarToEdit(AddCar car) {
+        this.editingCar = car;
+
+        txtBrand.setText(car.getBrand());
+        txtModel.setText(car.getModel());
+        txtYear.setText(String.valueOf(car.getYear()));
+        txtColor.setText(car.getColor());
+        txtPrice.setText(String.valueOf(car.getPricePerDay()));
+        selectedImageName = car.getImageName();
+
+        lblImageSelected.setText(
+                (selectedImageName == null || selectedImageName.isBlank())
+                        ? "Kein Bild gewählt"
+                        : selectedImageName
+        );
+
+    }
+
+
+
 
 }

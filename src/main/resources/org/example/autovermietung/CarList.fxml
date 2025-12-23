@@ -18,29 +18,25 @@
         <Label text="Meine Garage"
                style="-fx-text-fill: white; -fx-font-size: 30; -fx-font-weight: bold;" />
 
-        <!-- Scrollbarer Bereich -->
         <ScrollPane fx:id="scrollPane"
-                    hbarPolicy="ALWAYS"
+                    hbarPolicy="AS_NEEDED"
                     vbarPolicy="NEVER"
-                    pannable="true"
-                    fitToWidth="false"
                     fitToHeight="true"
-                    style="
-                        -fx-background-color: transparent;
-                        -fx-background: transparent;
-                        -fx-control-inner-background: transparent;
-                    ">
+                    pannable="true"
+                    style="-fx-background-color: transparent; -fx-background: transparent;">
 
-            <!-- WICHTIG: orientation = VERTICAL, prefWrapLength ≈ Höhe von 3 Karten -->
-            <FlowPane fx:id="carContainer"
-                      orientation="VERTICAL"
-                      prefWrapLength="1150"
-                      hgap="25"
-                      vgap="25"
-                      style="
-                          -fx-background-color: transparent;
-                          -fx-background: transparent;
-                      "/>
+            <!-- Wichtig: Inhalt transparent machen (gegen weißen/grauen Block) -->
+            <content>
+                <GridPane fx:id="carGrid"
+                          hgap="25"
+                          vgap="25"
+                          style="-fx-background-color: transparent;">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
+                </GridPane>
+            </content>
+
         </ScrollPane>
 
         <HBox spacing="20">
