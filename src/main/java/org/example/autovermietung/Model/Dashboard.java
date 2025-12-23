@@ -5,51 +5,48 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.text.Font;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
-import org.example.autovermietung.Controller.DashboardController;
+import javafx.stage.StageStyle;
 
 public class Dashboard extends Application {
 
     @Override
-    public void start(Stage stage) throws Exception {
-
-
+    public void start(Stage stage) {
         try {
+            // Fonts (optional – null-check wäre sauber, aber ok)
             Font.loadFont(getClass().getResourceAsStream("/org/example/autovermietung/fonts/Pretendard-Regular.otf"), 14);
             Font.loadFont(getClass().getResourceAsStream("/org/example/autovermietung/fonts/Pretendard-Medium.otf"), 14);
             Font.loadFont(getClass().getResourceAsStream("/org/example/autovermietung/fonts/Pretendard-SemiBold.otf"), 14);
             Font.loadFont(getClass().getResourceAsStream("/org/example/autovermietung/fonts/Pretendard-Bold.otf"), 14);
 
-            // Laden der FXML
-            FXMLLoader fxmlLoader = new FXMLLoader(
-                    Dashboard.class.getResource("/org/example/autovermietung/dashboard.fxml")
-            );
-            Parent root = fxmlLoader.load();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/autovermietung/dashboard.fxml"));
+            Parent root = loader.load();
 
-            // Laden der CSS
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/style/style.css").toExternalForm());
 
-
-
-//            --- DEBUGGING FALLS CSS NICHT ERKANNT WIRD ---
-//            System.out.println("Working dir = " + new File(".").getAbsolutePath());
-//            System.out.println("Check target = " + new File("target/classes").exists());
-//            System.out.println("Check style.css = " + new File("src/main/resources/style/style.css").exists());
-
-
-            DashboardController dashboardController = fxmlLoader.getController();
-            
-
-            // Stage-Konfig
             stage.setTitle("Autovermietung");
-            stage.initStyle(StageStyle.UNDECORATED); // 🔥 DAS ist der entscheidende Fix
+            stage.initStyle(StageStyle.UNDECORATED);
+
+            // ✅ Start „maximiert“ aber stabil: setX/Y + setWidth/Height auf Visual Bounds
+            var vb = Screen.getPrimary().getVisualBounds();
+            stage.setX(vb.getMinX());
+            stage.setY(vb.getMinY());
+            stage.setWidth(vb.getWidth());
+            stage.setHeight(vb.getHeight());
 
             stage.setScene(scene);
-            stage.setMaximized(true);
+
+            // ✅ Optional: Fullscreen Toggle per F11 / ESC
+            scene.setOnKeyPressed(e -> {
+                switch (e.getCode()) {
+                    case F11 -> stage.setFullScreen(!stage.isFullScreen());
+                    case ESCAPE -> { if (stage.isFullScreen()) stage.setFullScreen(false); }
+                }
+            });
+
             stage.show();
-
-
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -58,6 +55,5 @@ public class Dashboard extends Application {
 
     public static void main(String[] args) {
         launch();
-
     }
 }

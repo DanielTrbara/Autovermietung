@@ -180,6 +180,14 @@ public class DashboardController {
 
     private void switchScene(ActionEvent event, String fxmlPath) {
         try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+            Parent root = loader.load();
+
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add(
+                    getClass().getResource("/style/style.css").toExternalForm()
+            );
+
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.setScene(scene);
             stage.setMaximized(true);
