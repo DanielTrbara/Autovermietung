@@ -53,4 +53,23 @@ public class EarningRepository {
             em.close();
         }
     }
+
+    public List<Earning> findBetween(java.time.LocalDateTime start, java.time.LocalDateTime end) {
+        EntityManager em = JpaUtil.getEntityManager();
+        try {
+            if (start == null || end == null) {
+                return em.createQuery("SELECT e FROM Earning e ORDER BY e.occurredAt", Earning.class)
+                        .getResultList();
+            }
+            return em.createQuery(
+                            "SELECT e FROM Earning e WHERE e.occurredAt >= :start AND e.occurredAt <= :end ORDER BY e.occurredAt",
+                            Earning.class
+                    )
+                    .setParameter("start", start)
+                    .setParameter("end", end)
+                    .getResultList();
+        } finally {
+            em.close();
+        }
+    }
 }

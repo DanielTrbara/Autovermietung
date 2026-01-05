@@ -1,6 +1,7 @@
 package org.example.autovermietung.Controller;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import org.example.autovermietung.Model.Earning;
 import org.example.autovermietung.Repository.EarningRepository;
@@ -24,10 +25,20 @@ public class EarningsController {
         return repository.findAll();
     }
 
+    public List<Earning> getEarningsBetween(LocalDateTime start, LocalDateTime end) {
+        return repository.findBetween(start, end);
+    }
+
     // Gesamtsumme berechnen
     public double getTotalEarnings() {
         return repository.findAll()
                 .stream()
+                .mapToDouble(Earning::getAmount)
+                .sum();
+    }
+
+    public double getTotalEarnings(List<Earning> earnings) {
+        return earnings.stream()
                 .mapToDouble(Earning::getAmount)
                 .sum();
     }

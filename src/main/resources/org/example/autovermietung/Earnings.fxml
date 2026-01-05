@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
@@ -28,21 +29,56 @@
                 <Insets bottom="24" left="24" right="24" top="24"/>
             </padding>
 
-            <HBox spacing="12" alignment="CENTER_LEFT">
-                <Label text="Betrag" textFill="WHITE"/>
-                <TextField fx:id="betragField" promptText="z.B. 199.99"/>
-                <Label text="Datum" textFill="WHITE"/>
-                <DatePicker fx:id="datumPicker"/>
-                <Button onAction="#handleAddEarning" text="Hinzufügen"
-                        style="-fx-background-color: #EB512B; -fx-text-fill: white; -fx-cursor: hand;"/>
-            </HBox>
+            <Label text="Finanzübersicht" textFill="#EB512B">
+                <font>
+                    <Font name="Pretendard SemiBold" size="20.0"/>
+                </font>
+            </Label>
 
-            <TableView fx:id="earningsTable" prefHeight="480.0">
-                <columns>
-                    <TableColumn fx:id="betragColumn" text="Betrag" prefWidth="160.0"/>
-                    <TableColumn fx:id="datumColumn" text="Datum" prefWidth="160.0"/>
-                </columns>
-            </TableView>
+            <HBox spacing="24" alignment="TOP_LEFT">
+                <VBox spacing="12">
+                    <Label text="Buchungen" textFill="#EB512B">
+                        <font>
+                            <Font name="Pretendard SemiBold" size="18.0"/>
+                        </font>
+                    </Label>
+                    <TableView fx:id="earningsTable" prefHeight="560.0" prefWidth="780.0" maxWidth="780.0"
+                               style="-fx-background-color: #0F0F0F; -fx-control-inner-background: #0F0F0F; -fx-text-fill: white;">
+                        <columns>
+                            <TableColumn fx:id="betragColumn" text="Betrag" prefWidth="140.0"/>
+                            <TableColumn fx:id="datumColumn" text="Datum &amp; Uhrzeit" prefWidth="220.0"/>
+                            <TableColumn fx:id="kundeColumn" text="Kunde" prefWidth="200.0"/>
+                            <TableColumn fx:id="autoColumn" text="Fahrzeug" prefWidth="220.0"/>
+                        </columns>
+                    </TableView>
+                </VBox>
+
+                <VBox spacing="12" alignment="TOP_RIGHT">
+                    <Label text="Filter &amp; Statistik" textFill="#EB512B">
+                        <font>
+                            <Font name="Pretendard SemiBold" size="18.0"/>
+                        </font>
+                    </Label>
+                    <HBox spacing="12" alignment="CENTER_LEFT">
+                        <Label text="Zeitraum" textFill="WHITE"/>
+                        <ChoiceBox fx:id="rangeChoice"/>
+                        <Label text="Von" textFill="WHITE"/>
+                        <DatePicker fx:id="fromDatePicker"/>
+                        <Label text="Bis" textFill="WHITE"/>
+                        <DatePicker fx:id="toDatePicker"/>
+                    </HBox>
+
+                    <LineChart fx:id="earningsChart" prefHeight="360.0" prefWidth="520.0" animated="false" legendVisible="false"
+                               style="-fx-background-color: #050505; -fx-border-color: #EB512B; -fx-border-width: 1; -fx-plot-background: #050505; -fx-plot-border-color: #EB512B;">
+                        <xAxis>
+                            <CategoryAxis label="Datum"/>
+                        </xAxis>
+                        <yAxis>
+                            <NumberAxis label="Betrag (€)"/>
+                        </yAxis>
+                    </LineChart>
+                </VBox>
+            </HBox>
 
             <Label fx:id="totalLabel" text="Gesamt: 0.00 €" textFill="WHITE">
                 <font>
