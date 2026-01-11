@@ -29,6 +29,17 @@ public class CarRepository {
         }
     }
 
+    public void update(AddCar car) {
+        EntityManager em = JpaUtil.getEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.merge(car);   // 🔥 DAS ist das Update
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+    }
+
     public void delete(AddCar addCar) {
         EntityManager em = JpaUtil.getEntityManager();
         try {

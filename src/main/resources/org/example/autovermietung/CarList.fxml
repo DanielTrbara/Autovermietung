@@ -2,49 +2,46 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
+<?import javafx.geometry.*?>
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.example.autovermietung.Controller.CarListController"
-            prefHeight="600" prefWidth="800"
-            style="-fx-background-color: #0d0d0d; -fx-padding: 20;">
+            style="-fx-background-color: #0d0d0d;">
 
-    <VBox spacing="20">
+    <VBox spacing="20"
+          AnchorPane.topAnchor="20"
+          AnchorPane.leftAnchor="20"
+          AnchorPane.rightAnchor="20"
+          AnchorPane.bottomAnchor="60">
 
         <Label text="Meine Garage"
-               style="-fx-text-fill: white; -fx-font-size: 24;" />
+               style="-fx-text-fill: white; -fx-font-size: 30; -fx-font-weight: bold;" />
 
-        <TableView fx:id="carTable"
-                   prefHeight="400"
-                   style="-fx-background-color: #111;">
+        <ScrollPane fx:id="scrollPane"
+                    hbarPolicy="AS_NEEDED"
+                    vbarPolicy="NEVER"
+                    fitToHeight="true"
+                    pannable="true"
+                    style="-fx-background-color: transparent; -fx-background: transparent;">
 
-            <columns>
-                <TableColumn fx:id="colBrand" text="Marke" prefWidth="150"/>
-                <TableColumn fx:id="colModel" text="Modell" prefWidth="150"/>
-                <TableColumn fx:id="colYear" text="Baujahr" prefWidth="100"/>
-                <TableColumn fx:id="colColor" text="Farbe" prefWidth="120"/>
-                <TableColumn fx:id="colPrice" text="Preis/Tag" prefWidth="120"/>
-            </columns>
+            <!-- Wichtig: Inhalt transparent machen (gegen weißen/grauen Block) -->
+            <content>
+                <GridPane fx:id="carGrid"
+                          hgap="25"
+                          vgap="25"
+                          style="-fx-background-color: transparent;">
+                    <padding>
+                        <Insets top="20" right="20" bottom="20" left="20"/>
+                    </padding>
+                </GridPane>
+            </content>
 
-        </TableView>
+        </ScrollPane>
 
         <HBox spacing="20">
-
-            <Button text="Auto hinzufügen"
-                    fx:id="btnAddCar"
-                    onAction="#handleAddCar"
-                    style="-fx-background-color: #E04B24; -fx-text-fill: white;"/>
-
-            <Button text="Auto löschen"
-                    fx:id="btnDeleteCar"
-                    onAction="#handleDeleteCar"
-                    style="-fx-background-color: darkred; -fx-text-fill: white;"/>
-
-            <Button text="Zurück zum Dashboard"
-                    onAction="#handleBack"
-                    style="-fx-text-fill: white; -fx-background-color: #333;"/>
-
+            <Button text="Auto hinzufügen" onAction="#handleAddCar"/>
+            <Button text="Zurück" onAction="#handleBack"/>
         </HBox>
 
     </VBox>

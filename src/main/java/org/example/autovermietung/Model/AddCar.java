@@ -7,13 +7,16 @@ public class AddCar {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int car_id;
 
     private String brand;
     private String model;
     private double pricePerDay;
     private int year;
     private String color;
+    private String imageName;
+
+
 
     public AddCar() {
     }
@@ -27,7 +30,7 @@ public class AddCar {
     }
 
     public int getId() {
-        return id;
+        return car_id;
     }
     public String getBrand() {
         return brand;
@@ -44,6 +47,11 @@ public class AddCar {
     public String getColor() {
         return color;
     }
+    public String getImageName() {
+        return imageName;
+    }
+
+
 
     public void setBrand(String brand) {
         this.brand = brand;
@@ -60,4 +68,23 @@ public class AddCar {
     public void setColor(String color) {
         this.color = color;
     }
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    @Column(nullable = false)
+    private boolean available = true;
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
+    public int getCarId() {
+        return car_id;
+    }
+
 }
