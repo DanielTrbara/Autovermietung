@@ -90,6 +90,11 @@ public class DashboardController {
     }
 
     @FXML
+    private void handleOpenRental(javafx.event.ActionEvent event) throws IOException {
+        switchScene(event, "/org/example/autovermietung/Rental.fxml");
+    }
+
+    @FXML
     private void handleTitleBarDragged(MouseEvent event) {
         Stage stage = (Stage) titleBar.getScene().getWindow();
 

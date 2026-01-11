@@ -1,61 +1,98 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.autovermietung.Controller.BenutzerController">
+<BorderPane xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.autovermietung.Controller.BenutzerController"
+            prefWidth="1100" prefHeight="700">
 
+    <!-- TOP: durchgezogene Suchleiste über volle Breite -->
     <top>
-        <HBox spacing="10" alignment="CENTER_LEFT">
+        <HBox spacing="10" alignment="CENTER">
+            <padding>
+                <Insets top="12" right="12" bottom="8" left="12"/>
+            </padding>
+
             <TextField fx:id="txtSuche"
                        promptText="Suchen (Name, E-Mail, Telefon)…"
                        HBox.hgrow="ALWAYS"/>
-            <Button text="Neu" onAction="#onNeu"/>
         </HBox>
     </top>
 
+    <!-- CENTER: Tabelle zentriert + begrenzte Breite -->
     <center>
-        <TableView fx:id="tableBenutzer">
-            <columns>
-                <TableColumn fx:id="colVorname" text="Vorname"/>
-                <TableColumn fx:id="colNachname" text="Nachname"/>
-                <TableColumn fx:id="colAlter" text="Alter"/>
-                <TableColumn fx:id="colEmail" text="E-Mail"/>
-                <TableColumn fx:id="colTelefon" text="Telefon" />
-                <TableColumn fx:id="colAdresse" text="Adresse" />
-            </columns>
-        </TableView>
+        <StackPane>
+            <padding>
+                <Insets top="0" right="12" bottom="8" left="12"/>
+            </padding>
+
+            <TableView fx:id="tableBenutzer" maxWidth="1100">
+                <columnResizePolicy>
+                    <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
+                </columnResizePolicy>
+
+                <columns>
+                    <TableColumn fx:id="colVorname" text="Vorname" prefWidth="140"/>
+                    <TableColumn fx:id="colNachname" text="Nachname" prefWidth="160"/>
+                    <TableColumn fx:id="colGeburtsdatum" text="Geburtsdatum" prefWidth="80"/>
+                    <TableColumn fx:id="colEmail" text="E-Mail" prefWidth="220"/>
+                    <TableColumn fx:id="colTelefon" text="Telefon" prefWidth="160"/>
+                    <TableColumn fx:id="colAdresse" text="Adresse" prefWidth="240"/>
+                </columns>
+            </TableView>
+        </StackPane>
     </center>
 
+    <!-- BOTTOM: exakt zentriert zur Tabelle (gleiche Breite) -->
     <bottom>
-        <VBox spacing="10">
-            <GridPane hgap="10" vgap="10">
-                <Label text="Vorname:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-                <TextField fx:id="txtVorname" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <StackPane>
+            <padding>
+                <Insets top="8" right="12" bottom="12" left="12"/>
+            </padding>
 
-                <Label text="Nachname:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-                <TextField fx:id="txtNachname" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <VBox styleClass="card" spacing="12" maxWidth="1100">
+                <padding>
+                    <Insets top="12" right="12" bottom="12" left="12"/>
+                </padding>
 
-                <Label text="Alter:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-                <TextField fx:id="txtAlter" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                <Label text="Kunde hinzufügen"
+                       style="-fx-font-size: 14px; -fx-font-weight: 700;"/>
 
-                <Label text="E-Mail:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-                <TextField fx:id="txtEmail" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                <GridPane hgap="12" vgap="10">
+                    <columnConstraints>
+                        <ColumnConstraints halignment="RIGHT" prefWidth="120"/>
+                        <ColumnConstraints hgrow="ALWAYS"/>
+                    </columnConstraints>
 
-                <Label text="Telefon:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-                <TextField fx:id="txtTelefon" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                    <Label text="Vorname:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtVorname" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-                <Label text="Adresse:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
-                <TextField fx:id="txtAdresse" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
-            </GridPane>
+                    <Label text="Nachname:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtNachname" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-            <HBox spacing="10" alignment="CENTER_RIGHT">
-                <Button text="Hinzufügen" onAction="#onHinzufuegen"/>
-                <Button text="Löschen" onAction="#onLoeschen"/>
-            </HBox>
-        </VBox>
+                    <Label text="Geburtsdatum:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtGeburtsdatum" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                    <Label text="E-Mail:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtEmail" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                    <Label text="Telefon:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtTelefon" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                    <Label text="Adresse:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                    <TextField fx:id="txtAdresse" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+                </GridPane>
+
+                <HBox spacing="10" alignment="CENTER_RIGHT">
+                    <Button text="Zurück" onAction="#handleBack"/>
+                    <Button text="Hinzufügen" onAction="#onHinzufuegen"/>
+                    <Button text="Löschen" onAction="#onLoeschen"/>
+                </HBox>
+            </VBox>
+        </StackPane>
     </bottom>
 
 </BorderPane>

@@ -72,4 +72,19 @@ public class AddCar {
         this.imageName = imageName;
     }
 
+    @Column(nullable = false)
+    private boolean available = true;
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
+    public int getCarId() {
+        return car_id;
+    }
+
 }

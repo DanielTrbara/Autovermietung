@@ -7,7 +7,7 @@
 <?import javafx.scene.text.*?>
 <BorderPane
         style="-fx-background-color: #050505;"
-        xmlns="http://javafx.com/javafx/25"
+        xmlns="http://javafx.com/javafx/21"
         xmlns:fx="http://javafx.com/fxml/1"
         fx:controller="org.example.autovermietung.Controller.DashboardController">
 
@@ -250,6 +250,47 @@
                                     onAction="#handleOpenBenutzer"
                                     style="-fx-background-color: #EB512B; -fx-text-fill: white; -fx-cursor: hand; -fx-background-radius: 0;"
                                     text="Kunden kontaktieren">
+                                <font>
+                                    <Font name="Pretendard Medium" size="14.0"/>
+                                </font>
+                            </Button>
+                        </children>
+                    </Pane>
+                </children>
+            </StackPane>
+
+            <!-- Vermietung Card -->
+            <StackPane layoutX="1150.0" layoutY="20.0" prefHeight="411.0" prefWidth="298.0">
+                <children>
+                    <ImageView fitHeight="260.0" fitWidth="1042.0" pickOnBounds="true" smooth="false">
+                        <image>
+                            <Image url="@assets/rental-bg.jpg"/>
+                        </image>
+                    </ImageView>
+
+                    <Pane prefHeight="260.0" prefWidth="1042.0"
+                          style="-fx-background-color: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.44) 40%, rgba(0, 0, 0, 1) 70%);">
+                        <children>
+                            <Label layoutX="20.0" layoutY="150.0" text="Vermietung" textFill="WHITE">
+                                <font>
+                                    <Font name="Pretendard SemiBold" size="24.0"/>
+                                </font>
+                            </Label>
+
+                            <Label layoutX="20.0" layoutY="190.0" prefWidth="820.0"
+                                   text="Wähle Kunde und Auto aus, lege Zeitraum fest und erstelle einen Mietvertrag."
+                                   textFill="WHITE" wrapText="true">
+                                <font>
+                                    <Font size="11.0"/>
+                                </font>
+                            </Label>
+
+                            <Button fx:id="btnOpenRental"
+                                    layoutX="20.0" layoutY="225.0"
+                                    prefHeight="30.0" prefWidth="170.0"
+                                    onAction="#handleOpenRental"
+                                    style="-fx-background-color: #EB512B; -fx-text-fill: white; -fx-cursor: hand; -fx-background-radius: 0;"
+                                    text="Zur Vermietung">
                                 <font>
                                     <Font name="Pretendard Medium" size="14.0"/>
                                 </font>
