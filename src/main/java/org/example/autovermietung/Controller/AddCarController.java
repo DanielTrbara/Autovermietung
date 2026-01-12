@@ -99,6 +99,7 @@ public class AddCarController {
             car.setColor(txtColor.getText());
             car.setPricePerDay(Double.parseDouble(txtPrice.getText()));
             car.setImageName(selectedImageName);
+            car.setAvailable(true);
 
             if (editingCar == null) {
                 carRepository.save(car);
