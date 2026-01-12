@@ -1,13 +1,11 @@
 package org.example.autovermietung.Repository;
 
 import jakarta.persistence.EntityManager;
+import java.util.List;
 import org.example.autovermietung.JpaUtil;
 import org.example.autovermietung.Model.Earning;
 
-import java.util.List;
-
 public class EarningRepository {
-
     // Alle Einnahmen aus der Datenbank abrufen
     public List<Earning> findAll() {
         EntityManager em = JpaUtil.getEntityManager();

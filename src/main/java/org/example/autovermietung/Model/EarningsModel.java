@@ -13,6 +13,6 @@ public class EarningsModel {
         return earnings;
      }
     public double getSummary() {
-        return earnings.stream().mapToDouble(Earning::getBetrag).sum();
+        return earnings.stream().mapToDouble(Earning::getAmount).sum();
     }
 }

@@ -10,10 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.net.URL;
 
 public class DashboardController {
 
@@ -27,6 +25,9 @@ public class DashboardController {
 
     @FXML
     private Button maintenanceButton;
+
+    @FXML
+    private Button financeButton;
 
     @FXML
     private HBox titleBar;
@@ -45,6 +46,24 @@ public class DashboardController {
     private double xOffset = 0;
     private double yOffset = 0;
     private boolean isMaximized = false;
+
+    @FXML
+    private void openEarnings() {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/org/example/autovermietung/Earnings.fxml")
+            );
+            Parent root = loader.load();
+
+            Stage stage = new Stage();
+            stage.setTitle("Finanzen");
+            stage.setScene(new Scene(root));
+            stage.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     public void initialize() {
@@ -181,6 +200,12 @@ public class DashboardController {
     private void handleOpenBenutzer(ActionEvent event) {
 
         switchScene(event, "/org/example/autovermietung/Benutzer.fxml");
+    }
+
+
+    @FXML
+    private void handleOpenFinance(ActionEvent event) {
+        switchScene(event, "/org/example/autovermietung/Earnings.fxml");
     }
 
     private void switchScene(ActionEvent event, String fxmlPath) {

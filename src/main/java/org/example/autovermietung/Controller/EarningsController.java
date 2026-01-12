@@ -1,14 +1,12 @@
 package org.example.autovermietung.Controller;
 
+import java.time.LocalDate;
+import java.util.List;
 import org.example.autovermietung.Model.Earning;
 import org.example.autovermietung.Repository.EarningRepository;
 
-import java.time.LocalDate;
-import java.util.List;
-
 public class EarningsController {
-
-    private EarningRepository repository;
+    private final EarningRepository repository;
 
     public EarningsController() {
         this.repository = new EarningRepository();
@@ -16,7 +14,8 @@ public class EarningsController {
 
     // Neue Einnahme hinzufügen
     public void addEarning(double betrag, LocalDate datum) {
-        Earning e = new Earning(betrag, datum);
+        Earning e = new Earning(betrag, datum.atStartOfDay());
+        e.setType(Earning.TYPE_MANUAL_INCOME);
         repository.save(e);
     }
 
@@ -29,7 +28,7 @@ public class EarningsController {
     public double getTotalEarnings() {
         return repository.findAll()
                 .stream()
-                .mapToDouble(Earning::getBetrag)
+                .mapToDouble(Earning::getAmount)
                 .sum();
     }
 

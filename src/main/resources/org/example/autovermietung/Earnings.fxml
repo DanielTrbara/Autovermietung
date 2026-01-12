@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="org.example.autovermietung.View.EarningsViewController">
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="12" style="-fx-background-color: #050505;">
+            <padding>
+                <Insets bottom="12" left="20" right="20" top="12"/>
+            </padding>
+            <Button onAction="#handleBack" text="Zurück"
+                    style="-fx-background-color: #EB512B; -fx-text-fill: white; -fx-cursor: hand;"/>
+            <Label text="Finanzen" textFill="WHITE">
+                <font>
+                    <Font name="Pretendard SemiBold" size="18.0"/>
+                </font>
+            </Label>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="16" style="-fx-background-color: #050505;">
+            <padding>
+                <Insets bottom="24" left="24" right="24" top="24"/>
+            </padding>
+
+            <HBox spacing="12" alignment="CENTER_LEFT">
+                <Label text="Betrag" textFill="WHITE"/>
+                <TextField fx:id="betragField" promptText="z.B. 199.99"/>
+                <Label text="Datum" textFill="WHITE"/>
+                <DatePicker fx:id="datumPicker"/>
+                <Button onAction="#handleAddEarning" text="Hinzufügen"
+                        style="-fx-background-color: #EB512B; -fx-text-fill: white; -fx-cursor: hand;"/>
+            </HBox>
+
+            <TableView fx:id="earningsTable" prefHeight="480.0">
+                <columns>
+                    <TableColumn fx:id="betragColumn" text="Betrag" prefWidth="160.0"/>
+                    <TableColumn fx:id="datumColumn" text="Datum" prefWidth="160.0"/>
+                </columns>
+            </TableView>
+
+            <Label fx:id="totalLabel" text="Gesamt: 0.00 €" textFill="WHITE">
+                <font>
+                    <Font name="Pretendard Medium" size="16.0"/>
+                </font>
+            </Label>
+        </VBox>
+    </center>
+</BorderPane>
