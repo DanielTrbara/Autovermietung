@@ -250,7 +250,7 @@ public class RentalController {
         dpStart.setValue(null);
         dpEnd.setValue(null);
 
-        new Alert(Alert.AlertType.INFORMATION, "Vermietung erstellt ✅").show();
+        new Alert(Alert.AlertType.INFORMATION, "Vermietung erstellt").show();
     }
 
     @FXML
