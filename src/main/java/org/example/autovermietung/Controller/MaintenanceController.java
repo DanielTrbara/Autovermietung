@@ -3,9 +3,14 @@ package org.example.autovermietung.Controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 import java.sql.*;
 
@@ -32,9 +37,14 @@ public class MaintenanceController {
     @FXML
     private TableColumn<MaintenanceRecord, String> repairsColumn;
 
+    @FXML
+    private Button backButton;
+
+    @FXML
+    private Button addButton;
+
     // Database connection details
     private static final String DB_URL = "jdbc:sqlite:autovermietung.db";
-
     // If using MySQL/PostgreSQL instead:
     // private static final String DB_URL = "jdbc:mysql://localhost:3306/autovermietung";
     // private static final String DB_USER = "your_username";
@@ -51,6 +61,74 @@ public class MaintenanceController {
         loadMaintenanceData();
     }
 
+    @FXML
+    private void handleBackToDashboard() {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/org/example/autovermietung/dashboard.fxml")
+            );
+            Parent root = loader.load();
+
+            Stage stage = (Stage) backButton.getScene().getWindow();
+            Scene scene = new Scene(root, 1440, 1200);
+            scene.getStylesheets().add(
+                    getClass().getResource("/style/style.css").toExternalForm()
+            );
+
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (Exception e) {
+            System.err.println("Error navigating back to dashboard: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleAddNew() {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/org/example/autovermietung/MaintenanceAdd.fxml")
+            );
+            Parent root = loader.load();
+
+            Stage stage = (Stage) addButton.getScene().getWindow();
+            Scene scene = new Scene(root, 1440, 1200);
+            scene.getStylesheets().add(
+                    getClass().getResource("/style/style.css").toExternalForm()
+            );
+
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (Exception e) {
+            System.err.println("Error opening add form: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
+    private void openDetailView(MaintenanceRecord record) {
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/org/example/autovermietung/MaintenanceDetail.fxml")
+            );
+            Parent root = loader.load();
+
+            Stage stage = (Stage) maintenanceTable.getScene().getWindow();
+            Scene scene = new Scene(root, 1440, 1200);
+            scene.getStylesheets().add(
+                    getClass().getResource("/style/style.css").toExternalForm()
+            );
+
+            stage.setScene(scene);
+            stage.show();
+
+        } catch (Exception e) {
+            System.err.println("Error opening detail view: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
+
     private void setupTableColumns() {
         herstellerColumn.setCellValueFactory(new PropertyValueFactory<>("hersteller"));
         modellColumn.setCellValueFactory(new PropertyValueFactory<>("modell"));
@@ -63,15 +141,19 @@ public class MaintenanceController {
     private void loadMaintenanceData() {
         maintenanceData.clear();
 
+        // JOIN mit AddCar Tabelle
         String query = """
                     SELECT 
-                        c.id,
-                        c.car_id,
+                        m.id,
+                        m.car_id,
                         m.oil_km_remaining,
                         m.engine_damage,
-                        m.repairs
+                        m.repairs,
+                        a.brand,
+                        a.model,
+                        a.year
                     FROM maintenance m
-                    INNER JOIN car c ON m.car_id = c.id
+                    INNER JOIN AddCar a ON m.car_id = a.car_id
                     ORDER BY m.id
                 """;
 
@@ -85,11 +167,10 @@ public class MaintenanceController {
                 String engineDamage = rs.getString("engine_damage");
                 String repairs = rs.getString("repairs");
 
-                // Get car details (you'll need to implement getCarDetails method)
-                // For now, using hardcoded values based on your screenshot
-                String hersteller = "Volkswagen";
-                String modell = "Phaeton";
-                int baujahr = 2016;
+                // Jetzt aus der AddCar Tabelle
+                String hersteller = rs.getString("brand");
+                String modell = rs.getString("model");
+                int baujahr = rs.getInt("year");
 
                 MaintenanceRecord record = new MaintenanceRecord(
                         carId,

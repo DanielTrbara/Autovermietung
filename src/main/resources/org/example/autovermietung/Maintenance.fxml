@@ -5,7 +5,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
@@ -55,15 +55,50 @@
                 <Insets top="20" right="50" bottom="40" left="50"/>
             </padding>
 
-            <!-- Title -->
-            <Label text="Wartungen" textFill="white">
-                <font>
-                    <Font name="Pretendard Bold" size="48.0"/>
-                </font>
-                <VBox.margin>
-                    <Insets bottom="40"/>
-                </VBox.margin>
-            </Label>
+            <!-- Title and Buttons Row -->
+            <HBox alignment="CENTER_LEFT" spacing="20">
+                <Label text="Wartungen" textFill="white">
+                    <font>
+                        <Font name="Pretendard Bold" size="48.0"/>
+                    </font>
+                </Label>
+
+                <!-- Spacer -->
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <!-- Add New Button -->
+                <Button fx:id="addButton"
+                        text="+ Neuer Eintrag"
+                        onAction="#handleAddNew"
+                        style="-fx-background-color: #EB512B;
+                               -fx-text-fill: white;
+                               -fx-padding: 10 24 10 24;
+                               -fx-background-radius: 4;
+                               -fx-cursor: hand;">
+                    <font>
+                        <Font name="Pretendard Medium" size="14.0"/>
+                    </font>
+                </Button>
+
+                <!-- Back Button -->
+                <Button fx:id="backButton"
+                        text="← Zurück zum Dashboard"
+                        onAction="#handleBackToDashboard"
+                        style="-fx-background-color: transparent;
+                               -fx-text-fill: #CCCCCC;
+                               -fx-border-color: #555555;
+                               -fx-border-width: 1px;
+                               -fx-border-radius: 4;
+                               -fx-background-radius: 4;
+                               -fx-padding: 10 20 10 20;
+                               -fx-cursor: hand;">
+                    <font>
+                        <Font name="Pretendard Medium" size="14.0"/>
+                    </font>
+                </Button>
+            </HBox>
+
+            <Region prefHeight="40"/>  <!-- Spacing -->
 
             <!-- Maintenance Table -->
             <TableView fx:id="maintenanceTable"
