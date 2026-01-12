@@ -5,45 +5,103 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<BorderPane prefHeight="1200.0" prefWidth="1440.0"
-            style="-fx-background-color: #050505;"
-            xmlns="http://javafx.com/javafx/25"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.example.autovermietung.Controller.DashboardController">
+<BorderPane
+        style="-fx-background-color: #050505;"
+        xmlns="http://javafx.com/javafx/21"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="org.example.autovermietung.Controller.DashboardController">
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.geometry.Insets?>
+
 
     <!-- TOP BAR -->
     <top>
-        <HBox alignment="CENTER_LEFT" style="-fx-background-color: #050505;">
-            <padding>
-                <Insets top="42" right="50" bottom="42" left="50"/>
-            </padding>
+        <VBox spacing="0" style="-fx-background-color: #050505;">
 
-            <!-- Logo and Brand -->
-            <HBox alignment="CENTER_LEFT" spacing="12">
-                <ImageView fitHeight="30.0" fitWidth="60.0" preserveRatio="true">
-                    <image>
-                        <Image url="@assets/Sevenst_logo.png"/>
-                    </image>
-                </ImageView>
-                <Label text="Sevenst" textFill="white">
+            <!-- Window Controls Bar -->
+            <HBox fx:id="titleBar" alignment="CENTER_LEFT" onMouseDragged="#handleTitleBarDragged"
+                  onMousePressed="#handleTitleBarPressed"
+                  style="-fx-background-color: #050505; -fx-padding: 8 12 8 12;">
+
+                <!-- Title (optional, can be empty) -->
+                <Label style="-fx-font-size: 11px;" text="Autovermietung" textFill="#666666">
                     <font>
-                        <Font name="Pretendard Medium" size="18.0"/>
+                        <Font name="Pretendard Regular" size="11.0"/>
+                    </font>
+                </Label>
+
+                <!-- Spacer -->
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <!-- Window Control Buttons -->
+                <HBox alignment="CENTER_RIGHT" spacing="8">
+
+                    <!-- Minimize Button -->
+                    <Button fx:id="minimizeButton" onAction="#handleMinimize"
+                            style="-fx-background-color: transparent;                                    -fx-text-fill: #CCCCCC;                                    -fx-font-size: 16px;                                    -fx-padding: 4 12 4 12;                                    -fx-cursor: hand;                                    -fx-background-radius: 4;"
+                            text="−">
+                        <font>
+                            <Font name="Arial" size="16.0"/>
+                        </font>
+                    </Button>
+
+                    <!-- Maximize/Restore Button -->
+                    <Button fx:id="maximizeButton" onAction="#handleMaximize"
+                            style="-fx-background-color: transparent;                                    -fx-text-fill: #CCCCCC;                                    -fx-font-size: 14px;                                    -fx-padding: 4 12 4 12;                                    -fx-cursor: hand;                                    -fx-background-radius: 4;"
+                            text="□">
+                        <font>
+                            <Font name="Arial" size="14.0"/>
+                        </font>
+                    </Button>
+
+                    <!-- Close Button -->
+                    <Button fx:id="closeButton" onAction="#handleClose"
+                            style="-fx-background-color: transparent;                                    -fx-text-fill: #CCCCCC;                                    -fx-font-size: 14px;                                    -fx-padding: 4 12 4 12;                                    -fx-cursor: hand;                                    -fx-background-radius: 4;"
+                            text="✕">
+                        <font>
+                            <Font name="Arial" size="14.0"/>
+                        </font>
+                    </Button>
+                </HBox>
+            </HBox>
+
+            <!-- App Header Bar -->
+            <HBox alignment="CENTER_LEFT" style="-fx-background-color: #050505;">
+                <padding>
+                    <Insets bottom="30" left="50" right="50" top="20"/>
+                </padding>
+
+                <!-- Logo and Brand -->
+                <HBox alignment="CENTER_LEFT" spacing="12">
+                    <ImageView fitHeight="30.0" fitWidth="60.0" preserveRatio="true">
+                        <image>
+                            <Image url="@assets/Sevenst_logo.png"/>
+                        </image>
+                    </ImageView>
+                    <Label text="Sevenst" textFill="white">
+                        <font>
+                            <Font name="Pretendard Medium" size="18.0"/>
+                        </font>
+                    </Label>
+                </HBox>
+
+                <!-- Spacer -->
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <!-- User Info -->
+                <Label fx:id="usernameLabel" style="-fx-text-fill: white; -fx-opacity: 0.85;"
+                       text="Angemeldet als [Username]">
+                    <font>
+                        <Font name="Pretendard Medium" size="14.0"/>
                     </font>
                 </Label>
             </HBox>
-
-            <!-- Spacer -->
-            <Region HBox.hgrow="ALWAYS"/>
-
-            <!-- User Info -->
-            <Label fx:id="usernameLabel" text="Angemeldet als [Username]"
-                   style="-fx-text-fill: white; -fx-opacity: 0.85;">
-                <font>
-                    <Font name="Pretendard Medium" size="14.0"/>
-                </font>
-            </Label>
-        </HBox>
+        </VBox>
     </top>
+
 
     <!-- MAIN CONTENT -->
     <center>
@@ -111,11 +169,10 @@
                                 </font>
                             </Label>
 
-                            <Button fx:id="btnOpenGarage"
-                                    layoutX="26.0" layoutY="355.0" prefHeight="28.0" prefWidth="125.0"
+                            <Button fx:id="btnOpenGarage" layoutX="26.0" layoutY="355.0" onAction="#handleOpenGarage"
+                                    prefHeight="28.0" prefWidth="125.0"
                                     style="-fx-background-color: #EB512B; -fx-text-fill: white; -fx-cursor: hand; -fx-background-radius: 0;"
-                                    text="Zur Garage" textFill="WHITE"
-                                    onAction="#handleOpenGarage">
+                                    text="Zur Garage" textFill="WHITE">
                                 <font>
                                     <Font name="Pretendard SemiBold" size="14.0"/>
                                 </font>
@@ -150,11 +207,10 @@
                                 </font>
                             </Label>
 
-                            <Button fx:id="maintenanceButton"
-                                    layoutX="14.0" layoutY="293.0" prefHeight="30.0" prefWidth="150.0"
+                            <Button fx:id="maintenanceButton" layoutX="14.0" layoutY="293.0" onAction="#openMaintenance"
+                                    prefHeight="30.0" prefWidth="150.0"
                                     style="-fx-background-color: #EB512B; -fx-text-fill: white; -fx-cursor: hand; -fx-background-radius: 0;"
-                                    text="Services anzeigen"
-                                    onAction="#openMaintenance">
+                                    text="Services anzeigen">
                                 <font>
                                     <Font name="Pretendard Medium" size="14.0"/>
                                 </font>
@@ -164,7 +220,7 @@
                 </children>
             </StackPane>
 
-            <!-- Kunden Card -->
+            <!-- Benutzer -->
             <StackPane layoutX="413.0" layoutY="455.0" prefHeight="336.0" prefWidth="722.0">
                 <children>
                     <ImageView fitHeight="336.0" fitWidth="720.0" pickOnBounds="true" smooth="false">
@@ -178,7 +234,7 @@
                             <Label layoutX="20.0" layoutY="207.0" prefHeight="44.0" prefWidth="93.0" text="Kunden"
                                    textFill="WHITE">
                                 <font>
-                                    <Font name="Pretendard SemiBold" size="24.0"/>
+                                    <Font size="24.0"/>
                                 </font>
                             </Label>
                             <Label layoutX="20.0" layoutY="251.0" prefHeight="17.0" prefWidth="518.0"
@@ -188,7 +244,7 @@
                                     <Font size="11.0"/>
                                 </font>
                             </Label>
-                            <Button fx:id="kundenButton"
+                            <Button fx:id="KundenButton"
                                     layoutX="20.0" layoutY="292.0"
                                     prefHeight="30.0" prefWidth="150.0"
                                     onAction="#handleOpenBenutzer"
@@ -203,7 +259,46 @@
                 </children>
             </StackPane>
 
+            <!-- Vermietung Card -->
+            <StackPane layoutX="1150.0" layoutY="20.0" prefHeight="411.0" prefWidth="298.0">
+                <children>
+                    <ImageView fitHeight="260.0" fitWidth="1042.0" pickOnBounds="true" smooth="false">
+                        <image>
+                            <Image url="@assets/rental-bg.jpg"/>
+                        </image>
+                    </ImageView>
+
+                    <Pane prefHeight="260.0" prefWidth="1042.0"
+                          style="-fx-background-color: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.44) 40%, rgba(0, 0, 0, 1) 70%);">
+                        <children>
+                            <Label layoutX="20.0" layoutY="150.0" text="Vermietung" textFill="WHITE">
+                                <font>
+                                    <Font name="Pretendard SemiBold" size="24.0"/>
+                                </font>
+                            </Label>
+
+                            <Label layoutX="20.0" layoutY="190.0" prefWidth="820.0"
+                                   text="Wähle Kunde und Auto aus, lege Zeitraum fest und erstelle einen Mietvertrag."
+                                   textFill="WHITE" wrapText="true">
+                                <font>
+                                    <Font size="11.0"/>
+                                </font>
+                            </Label>
+
+                            <Button fx:id="btnOpenRental"
+                                    layoutX="20.0" layoutY="225.0"
+                                    prefHeight="30.0" prefWidth="170.0"
+                                    onAction="#handleOpenRental"
+                                    style="-fx-background-color: #EB512B; -fx-text-fill: white; -fx-cursor: hand; -fx-background-radius: 0;"
+                                    text="Zur Vermietung">
+                                <font>
+                                    <Font name="Pretendard Medium" size="14.0"/>
+                                </font>
+                            </Button>
+                        </children>
+                    </Pane>
+                </children>
+            </StackPane>
         </AnchorPane>
     </center>
-
 </BorderPane>
