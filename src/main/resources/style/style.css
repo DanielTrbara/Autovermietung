@@ -3,23 +3,24 @@
     font-weight: 400;
     src: url('/org/example/autovermietung/fonts/Pretendard-Regular.otf');
 }
+
 @font-face {
     font-family: 'Pretendard';
     font-weight: 500;
     src: url('/org/example/autovermietung/fonts/Pretendard-Medium.otf');
 }
+
 @font-face {
     font-family: 'Pretendard';
     font-weight: 600;
     src: url('/org/example/autovermietung/fonts/Pretendard-SemiBold.otf');
 }
+
 @font-face {
     font-family: 'Pretendard';
     font-weight: 700;
     src: url('/org/example/autovermietung/fonts/Pretendard-Bold.otf');
 }
-
-
 
 
 .root {
@@ -37,8 +38,9 @@
 
 /* Card Shadow Effect */
 .card {
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 10, 0, 0, 2);
 }
+
 /* Button Hover Effect */
 .button:hover {
     -fx-background-color: derive(#EB512B, -10%);
@@ -50,5 +52,138 @@
 
 /* Card Shadow Effect */
 .card {
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0, 0, 2);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.15), 10, 0, 0, 2);
+}
+
+
+.table-view {
+    -fx-background-color: #000000;
+    -fx-border-color: #333333;
+    -fx-border-width: 1px 0 0 0;
+}
+
+/* ComboBox Styling */
+.combo-box {
+    -fx-background-color: #1a1a1a;
+    -fx-border-color: #333333;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+
+.combo-box .list-cell {
+    -fx-background-color: #1a1a1a;
+    -fx-text-fill: white;
+    -fx-padding: 10;
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: #2a2a2a;
+}
+
+.combo-box .list-cell:selected {
+    -fx-background-color: #EB512B;
+    -fx-text-fill: white;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #1a1a1a;
+    -fx-border-color: #333333;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: #2a2a2a;
+    -fx-border-color: #333333;
+}
+
+.combo-box .arrow {
+    -fx-background-color: white;
+}
+
+/* Column headers */
+.table-view .column-header-background {
+    -fx-background-color: #000000;
+}
+
+.table-view .column-header {
+    -fx-background-color: #000000;
+    -fx-border-color: #333333;
+    -fx-border-width: 0 0 1px 0;
+    -fx-padding: 15px;
+}
+
+.table-view .column-header .label {
+    -fx-text-fill: white;
+    -fx-font-family: "Pretendard SemiBold";
+    -fx-font-size: 14px;
+    -fx-alignment: center-left;
+}
+
+/* Table cells */
+.table-view .table-cell {
+    -fx-background-color: #000000;
+    -fx-text-fill: white;
+    -fx-border-color: #333333;
+    -fx-border-width: 0 0 1px 0;
+    -fx-padding: 15px;
+    -fx-font-family: "Pretendard Regular";
+    -fx-font-size: 14px;
+    -fx-alignment: center-left;
+}
+
+/* Table rows */
+.table-view .table-row-cell {
+    -fx-background-color: #000000;
+    -fx-border-color: transparent;
+}
+
+.table-view .table-row-cell:hover {
+    -fx-background-color: #1a1a1a;
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #2a2a2a;
+}
+
+/* Remove default focus border */
+.table-view:focused .table-row-cell:selected {
+    -fx-background-color: #2a2a2a;
+    -fx-border-color: transparent;
+}
+
+/* Scrollbar styling */
+.table-view .scroll-bar:vertical {
+    -fx-background-color: #000000;
+}
+
+.table-view .scroll-bar:vertical .thumb {
+    -fx-background-color: #333333;
+    -fx-background-radius: 5px;
+}
+
+.table-view .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: #555555;
+}
+
+.table-view .scroll-bar:vertical .track {
+    -fx-background-color: #000000;
+}
+
+.table-view .scroll-bar:horizontal {
+    -fx-background-color: #000000;
+}
+
+.table-view .scroll-bar:horizontal .thumb {
+    -fx-background-color: #333333;
+    -fx-background-radius: 5px;
+}
+
+/* Remove corner between scrollbars */
+.table-view .corner {
+    -fx-background-color: #000000;
+}
+
+/* Empty table placeholder */
+.table-view .placeholder .label {
+    -fx-text-fill: #666666;
+    -fx-font-family: "Pretendard Regular";
 }

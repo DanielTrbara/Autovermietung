@@ -18,7 +18,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.example.autovermietung.Model.AddCar;
 import org.example.autovermietung.Repository.CarRepository;
-import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,13 +29,6 @@ public class CarListController implements Initializable {
 
     @FXML private GridPane carGrid;
     @FXML private ScrollPane scrollPane;
-    @FXML private TextField txtSearch;
-    @FXML private TextField txtYearFrom;
-    @FXML private TextField txtYearTo;
-    @FXML private TextField txtMaxPrice;
-
-    private List<AddCar> allCars;
-
 
     private final CarRepository carRepository = new CarRepository();
 
@@ -54,9 +46,7 @@ public class CarListController implements Initializable {
             scrollPane.lookup(".viewport").setStyle("-fx-background-color: transparent;");
         });
 
-        allCars = carRepository.findAll();
-        renderCars(allCars);
-
+        loadCars();
 
         // Mausrad: vertikales scrollen -> horizontal verschieben
         scrollPane.addEventFilter(ScrollEvent.SCROLL, e -> {
@@ -78,70 +68,19 @@ public class CarListController implements Initializable {
         });
     }
 
-    private void renderCars(List<AddCar> cars) {
+    private void loadCars() {
         carGrid.getChildren().clear();
 
+        List<AddCar> cars = carRepository.findAll();
+
         for (int i = 0; i < cars.size(); i++) {
-            int column = i / ROWS;
-            int row = i % ROWS;
+            int column = i / ROWS;   // nach 3 Items -> neue Spalte
+            int row = i % ROWS;      // 0,1,2
 
             Pane card = createCarCard(cars.get(i));
             carGrid.add(card, column, row);
         }
     }
-
-    @FXML
-    private void handleFilter() {
-
-        String search = (txtSearch.getText() == null) ? "" : txtSearch.getText().trim().toLowerCase();
-
-        Integer yearFrom = parseIntOrNull(txtYearFrom.getText());
-        Integer yearTo = parseIntOrNull(txtYearTo.getText());
-        Double maxPrice = parseDoubleOrNull(txtMaxPrice.getText());
-
-        List<AddCar> filtered = allCars.stream()
-                .filter(c -> search.isBlank()
-                        || (c.getBrand() != null && c.getBrand().toLowerCase().contains(search))
-                        || (c.getModel() != null && c.getModel().toLowerCase().contains(search)))
-                .filter(c -> yearFrom == null || c.getYear() >= yearFrom)
-                .filter(c -> yearTo == null || c.getYear() <= yearTo)
-                .filter(c -> maxPrice == null || c.getPricePerDay() <= maxPrice)
-                .toList();
-
-        renderCars(filtered);
-    }
-
-    @FXML
-    private void handleResetFilter() {
-        txtSearch.clear();
-        txtYearFrom.clear();
-        txtYearTo.clear();
-        txtMaxPrice.clear();
-
-        renderCars(allCars);
-    }
-
-    private Integer parseIntOrNull(String text) {
-        try {
-            if (text == null || text.trim().isBlank()) return null;
-            return Integer.parseInt(text.trim());
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-    private Double parseDoubleOrNull(String text) {
-        try {
-            if (text == null || text.trim().isBlank()) return null;
-            return Double.parseDouble(text.trim().replace(",", "."));
-        } catch (Exception e) {
-            return null;
-        }
-    }
-
-
-
-
 
     private Pane createCarCard(AddCar car) {
 
@@ -192,8 +131,7 @@ public class CarListController implements Initializable {
         removeButton.setStyle("-fx-background-color: #d93636; -fx-text-fill: white; -fx-background-radius: 10;");
         removeButton.setOnAction(event -> {
             carRepository.delete(car);
-            allCars = carRepository.findAll();
-            renderCars(allCars);
+            loadCars(); // ✅ Grid neu laden (sauber, keine falschen Removes)
         });
 
         Button editButton = new Button("Bearbeiten");

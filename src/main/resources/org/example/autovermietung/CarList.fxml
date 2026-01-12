@@ -18,33 +18,6 @@
         <Label text="Meine Garage"
                style="-fx-text-fill: white; -fx-font-size: 30; -fx-font-weight: bold;" />
 
-        <HBox spacing="15" alignment="CENTER_LEFT">
-            <TextField fx:id="txtSearch"
-                       promptText="Suche Marke oder Modell..."
-                       prefWidth="250"/>
-
-            <TextField fx:id="txtYearFrom"
-                       promptText="Jahr von"
-                       prefWidth="90"/>
-
-            <TextField fx:id="txtYearTo"
-                       promptText="Jahr bis"
-                       prefWidth="90"/>
-
-            <TextField fx:id="txtMaxPrice"
-                       promptText="Max €/Tag"
-                       prefWidth="110"/>
-
-            <Button text="Filter"
-                    onAction="#handleFilter"
-                    style="-fx-background-color: #E04B24; -fx-text-fill: white;"/>
-
-            <Button text="Reset"
-                    onAction="#handleResetFilter"
-                    style="-fx-background-color: #333; -fx-text-fill: white;"/>
-        </HBox>
-
-
         <ScrollPane fx:id="scrollPane"
                     hbarPolicy="AS_NEEDED"
                     vbarPolicy="NEVER"
