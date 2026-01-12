@@ -22,6 +22,7 @@ module org.example.autovermietung {
 
     // Allow FXMLLoader to access controllers
     opens org.example.autovermietung.Controller to javafx.fxml;
+    opens org.example.autovermietung.View to javafx.fxml;
 
     // Allow Hibernate/JPA reflection access to entities
     opens org.example.autovermietung.Model to org.hibernate.orm.core, jakarta.persistence;

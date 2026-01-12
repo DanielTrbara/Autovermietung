@@ -2,14 +2,15 @@
   <persistence-unit name="autovermietungPU">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-    <class>org.example.autovermietung.Model.Benutzer</class>
+
+      <class>org.example.autovermietung.Model.Benutzer</class>
+      <class>org.example.autovermietung.Model.Earning</class>
 
     <properties>
       <property name="jakarta.persistence.jdbc.url" value="jdbc:sqlite:autovermietung.db"/>
       <property name="jakarta.persistence.jdbc.driver" value="org.sqlite.JDBC"/>
 
       <property name="hibernate.dialect" value="org.hibernate.community.dialect.SQLiteDialect"/>
-      <property name="hibernate.hbm2ddl.auto" value="none"/>
       <property name="hibernate.temp.use_jdbc_metadata_defaults" value="false"/>
       <property name="hibernate.show_sql" value="true"/>
       <property name="hibernate.format_sql" value="true"/>

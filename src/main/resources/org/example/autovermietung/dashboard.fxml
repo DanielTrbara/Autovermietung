@@ -105,6 +105,9 @@
 
     <!-- MAIN CONTENT -->
     <center>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER"
+                    style="-fx-background-color: #050505; -fx-background: #050505;">
+        <content>
         <AnchorPane style="-fx-background-color: #050505;">
 
             <!-- Finanzen Card -->
@@ -132,7 +135,8 @@
                                 </font>
                             </Label>
 
-                            <Button layoutX="14.0" layoutY="355.0" prefHeight="28.0" prefWidth="145.0"
+                            <Button fx:id="financeButton" layoutX="14.0" layoutY="355.0" prefHeight="28.0" prefWidth="145.0"
+                                    onAction="#handleOpenFinance"
                                     style="-fx-background-color: #EB512B; -fx-text-fill: white; -fx-cursor: hand; -fx-background-radius: 0;"
                                     text="Details anzeigen" textFill="WHITE">
                                 <font>
@@ -300,5 +304,7 @@
                 </children>
             </StackPane>
         </AnchorPane>
+        </content>
+        </ScrollPane>
     </center>
 </BorderPane>

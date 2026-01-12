@@ -13,10 +13,13 @@ import javafx.stage.Stage;
 import org.example.autovermietung.JpaUtil;
 import org.example.autovermietung.Model.AddCar;
 import org.example.autovermietung.Model.Benutzer;
+import org.example.autovermietung.Model.Earning;
 import org.example.autovermietung.Model.Rental;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import org.hibernate.exception.GenericJDBCException;
 
 public class RentalController {
@@ -228,6 +231,19 @@ public class RentalController {
             rental.setPricePerDay(managedAuto.getPricePerDay());
 
             em.persist(rental);
+
+            em.flush();
+
+            long rentalDays = ChronoUnit.DAYS.between(start, end) + 1;
+            if (rentalDays < 1) {
+                rentalDays = 1;
+            }
+            double totalEarning = rentalDays * managedAuto.getPricePerDay();
+            Earning earning = new Earning(totalEarning, LocalDateTime.now());
+            earning.setCarId(managedAuto.getCarId());
+            earning.setRentalId(rental.getRentalId());
+            earning.setType(Earning.TYPE_RENTAL_INCOME);
+            em.persist(earning);
 
             managedAuto.setAvailable(false); // sperren
             em.merge(managedAuto);
