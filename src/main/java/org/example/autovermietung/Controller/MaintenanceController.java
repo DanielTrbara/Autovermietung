@@ -137,14 +137,14 @@ public class MaintenanceController {
         engineDamageColumn.setCellValueFactory(new PropertyValueFactory<>("engineDamage"));
         repairsColumn.setCellValueFactory(new PropertyValueFactory<>("repairs"));
     }
-
+    
     private void loadMaintenanceData() {
         maintenanceData.clear();
 
         // JOIN mit AddCar Tabelle
         String query = """
                     SELECT 
-                        m.id,
+                        m.maintenance_id,
                         m.car_id,
                         m.oil_km_remaining,
                         m.engine_damage,
@@ -152,9 +152,9 @@ public class MaintenanceController {
                         a.brand,
                         a.model,
                         a.year
-                    FROM maintenance m
+                    FROM Maintenance m
                     INNER JOIN AddCar a ON m.car_id = a.car_id
-                    ORDER BY m.id
+                    ORDER BY m.maintenance_id
                 """;
 
         try (Connection conn = getConnection();
@@ -167,7 +167,7 @@ public class MaintenanceController {
                 String engineDamage = rs.getString("engine_damage");
                 String repairs = rs.getString("repairs");
 
-                // Jetzt aus der AddCar Tabelle
+                // Aus der AddCar Tabelle
                 String hersteller = rs.getString("brand");
                 String modell = rs.getString("model");
                 int baujahr = rs.getInt("year");

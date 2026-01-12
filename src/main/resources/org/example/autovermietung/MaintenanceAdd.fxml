@@ -6,6 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import java.lang.String?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="org.example.autovermietung.Controller.MaintenanceAddController"
@@ -98,92 +99,29 @@
                 <!-- Form Fields -->
                 <GridPane hgap="30" vgap="25">
 
-                    <!-- Car ID -->
-                    <Label text="Fahrzeug-ID *" textFill="#999999" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <!-- Fahrzeug auswählen -->
+                    <Label text="Fahrzeug *" textFill="#999999" GridPane.columnIndex="0" GridPane.rowIndex="0">
                         <font>
                             <Font name="Pretendard Medium" size="14.0"/>
                         </font>
                     </Label>
-                    <TextField fx:id="carIdField"
-                               promptText="z.B. 1"
-                               style="-fx-background-color: #1a1a1a;
-                                      -fx-text-fill: white;
-                                      -fx-prompt-text-fill: #666666;
-                                      -fx-border-color: #333333;
-                                      -fx-border-radius: 4;
-                                      -fx-background-radius: 4;
-                                      -fx-padding: 10;"
-                               GridPane.columnIndex="1" GridPane.rowIndex="0">
-                        <font>
-                            <Font name="Pretendard Regular" size="14.0"/>
-                        </font>
-                    </TextField>
-
-                    <!-- Hersteller -->
-                    <Label text="Hersteller *" textFill="#999999" GridPane.columnIndex="0" GridPane.rowIndex="1">
-                        <font>
-                            <Font name="Pretendard Medium" size="14.0"/>
-                        </font>
-                    </Label>
-                    <TextField fx:id="herstellerField"
-                               promptText="z.B. Volkswagen"
-                               style="-fx-background-color: #1a1a1a;
-                                      -fx-text-fill: white;
-                                      -fx-prompt-text-fill: #666666;
-                                      -fx-border-color: #333333;
-                                      -fx-border-radius: 4;
-                                      -fx-background-radius: 4;
-                                      -fx-padding: 10;"
-                               GridPane.columnIndex="1" GridPane.rowIndex="1">
-                        <font>
-                            <Font name="Pretendard Regular" size="14.0"/>
-                        </font>
-                    </TextField>
-
-                    <!-- Modell -->
-                    <Label text="Modell *" textFill="#999999" GridPane.columnIndex="0" GridPane.rowIndex="2">
-                        <font>
-                            <Font name="Pretendard Medium" size="14.0"/>
-                        </font>
-                    </Label>
-                    <TextField fx:id="modellField"
-                               promptText="z.B. Phaeton"
-                               style="-fx-background-color: #1a1a1a;
-                                      -fx-text-fill: white;
-                                      -fx-prompt-text-fill: #666666;
-                                      -fx-border-color: #333333;
-                                      -fx-border-radius: 4;
-                                      -fx-background-radius: 4;
-                                      -fx-padding: 10;"
-                               GridPane.columnIndex="1" GridPane.rowIndex="2">
-                        <font>
-                            <Font name="Pretendard Regular" size="14.0"/>
-                        </font>
-                    </TextField>
-
-                    <!-- Baujahr -->
-                    <Label text="Baujahr *" textFill="#999999" GridPane.columnIndex="0" GridPane.rowIndex="3">
-                        <font>
-                            <Font name="Pretendard Medium" size="14.0"/>
-                        </font>
-                    </Label>
-                    <TextField fx:id="baujahrField"
-                               promptText="z.B. 2016"
-                               style="-fx-background-color: #1a1a1a;
-                                      -fx-text-fill: white;
-                                      -fx-prompt-text-fill: #666666;
-                                      -fx-border-color: #333333;
-                                      -fx-border-radius: 4;
-                                      -fx-background-radius: 4;
-                                      -fx-padding: 10;"
-                               GridPane.columnIndex="1" GridPane.rowIndex="3">
-                        <font>
-                            <Font name="Pretendard Regular" size="14.0"/>
-                        </font>
-                    </TextField>
+                    <ComboBox fx:id="carComboBox"
+                              promptText="Wählen Sie ein Fahrzeug aus"
+                              style="-fx-background-color: #1a1a1a;
+                                     -fx-text-fill: white;
+                                     -fx-prompt-text-fill: #666666;
+                                     -fx-border-color: #333333;
+                                     -fx-border-radius: 4;
+                                     -fx-background-radius: 4;"
+                              prefWidth="400"
+                              GridPane.columnIndex="1" GridPane.rowIndex="0">
+                        <styleClass>
+                            <String fx:value="combo-box"/>
+                        </styleClass>
+                    </ComboBox>
 
                     <!-- Ölwechsel -->
-                    <Label text="Ölwechsel (km) *" textFill="#999999" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                    <Label text="Ölwechsel (km) *" textFill="#999999" GridPane.columnIndex="0" GridPane.rowIndex="1">
                         <font>
                             <Font name="Pretendard Medium" size="14.0"/>
                         </font>
@@ -197,14 +135,14 @@
                                       -fx-border-radius: 4;
                                       -fx-background-radius: 4;
                                       -fx-padding: 10;"
-                               GridPane.columnIndex="1" GridPane.rowIndex="4">
+                               GridPane.columnIndex="1" GridPane.rowIndex="1">
                         <font>
                             <Font name="Pretendard Regular" size="14.0"/>
                         </font>
                     </TextField>
 
                     <!-- Motorschaden -->
-                    <Label text="Motorschaden" textFill="#999999" GridPane.columnIndex="0" GridPane.rowIndex="5">
+                    <Label text="Motorschaden" textFill="#999999" GridPane.columnIndex="0" GridPane.rowIndex="2">
                         <font>
                             <Font name="Pretendard Medium" size="14.0"/>
                         </font>
@@ -218,14 +156,14 @@
                                       -fx-border-radius: 4;
                                       -fx-background-radius: 4;
                                       -fx-padding: 10;"
-                               GridPane.columnIndex="1" GridPane.rowIndex="5">
+                               GridPane.columnIndex="1" GridPane.rowIndex="2">
                         <font>
                             <Font name="Pretendard Regular" size="14.0"/>
                         </font>
                     </TextField>
 
                     <!-- Reparaturen -->
-                    <Label text="Reparaturen" textFill="#999999" GridPane.columnIndex="0" GridPane.rowIndex="6">
+                    <Label text="Service-Kontakt" textFill="#999999" GridPane.columnIndex="0" GridPane.rowIndex="3">
                         <font>
                             <Font name="Pretendard Medium" size="14.0"/>
                         </font>
@@ -239,7 +177,7 @@
                                       -fx-border-radius: 4;
                                       -fx-background-radius: 4;
                                       -fx-padding: 10;"
-                               GridPane.columnIndex="1" GridPane.rowIndex="6">
+                               GridPane.columnIndex="1" GridPane.rowIndex="3">
                         <font>
                             <Font name="Pretendard Regular" size="14.0"/>
                         </font>

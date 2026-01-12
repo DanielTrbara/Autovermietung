@@ -1,32 +1,23 @@
 package org.example.autovermietung.Controller;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class MaintenanceAddController {
 
     @FXML
-    private TextField carIdField;
-
-    @FXML
-    private TextField herstellerField;
-
-    @FXML
-    private TextField modellField;
-
-    @FXML
-    private TextField baujahrField;
+    private ComboBox<CarItem> carComboBox;
 
     @FXML
     private TextField oilKmField;
@@ -53,7 +44,42 @@ public class MaintenanceAddController {
     public void initialize() {
         // Set default values
         engineDamageField.setText("-");
-        repairsField.setText("0711 6709300");
+        repairsField.setText("0711 312077"); // TÜV Süd Esslingen
+
+        // Load cars into ComboBox
+        loadCars();
+    }
+
+    private void loadCars() {
+        ObservableList<CarItem> cars = FXCollections.observableArrayList();
+
+        String query = "SELECT car_id, brand, model, year FROM AddCar ORDER BY brand, model";
+
+        try (Connection conn = DriverManager.getConnection(DB_URL);
+             PreparedStatement stmt = conn.prepareStatement(query);
+             ResultSet rs = stmt.executeQuery()) {
+
+            while (rs.next()) {
+                int carId = rs.getInt("car_id");
+                String brand = rs.getString("brand");
+                String model = rs.getString("model");
+                int year = rs.getInt("year");
+
+                cars.add(new CarItem(carId, brand, model, year));
+            }
+
+            carComboBox.setItems(cars);
+
+            if (cars.isEmpty()) {
+                showError("Keine Fahrzeuge gefunden. Bitte fügen Sie zuerst Fahrzeuge hinzu.");
+                saveButton.setDisable(true);
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Error loading cars: " + e.getMessage());
+            e.printStackTrace();
+            showError("Fehler beim Laden der Fahrzeuge aus der Datenbank.");
+        }
     }
 
     @FXML
@@ -67,7 +93,8 @@ public class MaintenanceAddController {
         }
 
         try {
-            int carId = Integer.parseInt(carIdField.getText().trim());
+            CarItem selectedCar = carComboBox.getValue();
+            int carId = selectedCar.getCarId();
             int oilKm = Integer.parseInt(oilKmField.getText().trim());
             String engineDamage = engineDamageField.getText().trim();
             String repairs = repairsField.getText().trim();
@@ -81,29 +108,14 @@ public class MaintenanceAddController {
             }
 
         } catch (NumberFormatException e) {
-            showError("Ungültige Zahlen in Fahrzeug-ID, Baujahr oder Ölwechsel-Kilometer.");
+            showError("Ungültige Zahl in Ölwechsel-Kilometer.");
         }
     }
 
     private boolean validateInputs() {
-        // Check required fields
-        if (carIdField.getText().trim().isEmpty()) {
-            showError("Bitte geben Sie eine Fahrzeug-ID ein.");
-            return false;
-        }
-
-        if (herstellerField.getText().trim().isEmpty()) {
-            showError("Bitte geben Sie einen Hersteller ein.");
-            return false;
-        }
-
-        if (modellField.getText().trim().isEmpty()) {
-            showError("Bitte geben Sie ein Modell ein.");
-            return false;
-        }
-
-        if (baujahrField.getText().trim().isEmpty()) {
-            showError("Bitte geben Sie ein Baujahr ein.");
+        // Check if car is selected
+        if (carComboBox.getValue() == null) {
+            showError("Bitte wählen Sie ein Fahrzeug aus.");
             return false;
         }
 
@@ -112,13 +124,11 @@ public class MaintenanceAddController {
             return false;
         }
 
-        // Validate numeric fields
+        // Validate numeric field
         try {
-            Integer.parseInt(carIdField.getText().trim());
-            Integer.parseInt(baujahrField.getText().trim());
             Integer.parseInt(oilKmField.getText().trim());
         } catch (NumberFormatException e) {
-            showError("Fahrzeug-ID, Baujahr und Ölwechsel müssen Zahlen sein.");
+            showError("Ölwechsel muss eine Zahl sein.");
             return false;
         }
 
@@ -127,7 +137,7 @@ public class MaintenanceAddController {
 
     private boolean insertMaintenance(int carId, int oilKm, String engineDamage, String repairs) {
         String insertQuery = """
-                    INSERT INTO maintenance (car_id, oil_km_remaining, engine_damage, repairs)
+                    INSERT INTO Maintenance (car_id, oil_km_remaining, engine_damage, repairs)
                     VALUES (?, ?, ?, ?)
                 """;
 
@@ -174,6 +184,30 @@ public class MaintenanceAddController {
         } catch (Exception e) {
             System.err.println("Error navigating back to list: " + e.getMessage());
             e.printStackTrace();
+        }
+    }
+
+    // Inner class for ComboBox items
+    public static class CarItem {
+        private final int carId;
+        private final String brand;
+        private final String model;
+        private final int year;
+
+        public CarItem(int carId, String brand, String model, int year) {
+            this.carId = carId;
+            this.brand = brand;
+            this.model = model;
+            this.year = year;
+        }
+
+        public int getCarId() {
+            return carId;
+        }
+
+        @Override
+        public String toString() {
+            return year + " " + brand + " " + model + " (ID: " + carId + ")";
         }
     }
 }

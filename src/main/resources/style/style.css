@@ -56,13 +56,47 @@
 }
 
 
-/* Maintenance Table Styling */
-
-/* TableView background */
 .table-view {
     -fx-background-color: #000000;
     -fx-border-color: #333333;
     -fx-border-width: 1px 0 0 0;
+}
+
+/* ComboBox Styling */
+.combo-box {
+    -fx-background-color: #1a1a1a;
+    -fx-border-color: #333333;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+
+.combo-box .list-cell {
+    -fx-background-color: #1a1a1a;
+    -fx-text-fill: white;
+    -fx-padding: 10;
+}
+
+.combo-box .list-cell:hover {
+    -fx-background-color: #2a2a2a;
+}
+
+.combo-box .list-cell:selected {
+    -fx-background-color: #EB512B;
+    -fx-text-fill: white;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: #1a1a1a;
+    -fx-border-color: #333333;
+}
+
+.combo-box .arrow-button {
+    -fx-background-color: #2a2a2a;
+    -fx-border-color: #333333;
+}
+
+.combo-box .arrow {
+    -fx-background-color: white;
 }
 
 /* Column headers */
